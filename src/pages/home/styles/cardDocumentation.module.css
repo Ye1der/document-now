@@ -1,3 +1,8 @@
+.card {
+  /* w-[300px] h-[150px] hover:border-foreground hover:scale-[102%] transition-all cursor-pointer */
+  background-color: red;
+}
+
 .headerContainer {
   display: flex;
   align-items: start;

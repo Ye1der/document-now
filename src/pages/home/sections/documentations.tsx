@@ -1,5 +1,5 @@
 import { CardDocumentation } from '../components/cardDocumentation'
-import styles from './styles/documentations.module.css'
+import styles from '../styles/documentations.module.css'
 
 export function Documentations() {
   return (
