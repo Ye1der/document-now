@@ -1,0 +1,20 @@
+.headerContainer {
+  display: flex;
+  align-items: start;
+  gap: 15px;
+
+  div {
+    h1 {
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    h2 {
+      opacity: 0.5;
+      width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

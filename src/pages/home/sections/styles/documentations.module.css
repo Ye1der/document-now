@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 25px;
+  overflow: auto;
+  padding: 30px 25px;
+  position: relative;
+}

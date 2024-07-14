@@ -1,5 +1,11 @@
-import { Button } from '@/components/ui/button'
+import { Documentations } from './sections/documentations'
+import { NavBar } from './sections/navbar'
 
 export function HomePage() {
-  return <Button>Document Now!</Button>
+  return (
+    <section className="h-screen flex flex-col">
+      <NavBar />
+      <Documentations />
+    </section>
+  )
 }

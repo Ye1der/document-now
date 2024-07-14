@@ -2,7 +2,6 @@ import { useSearch, useLocation } from 'wouter'
 import { extractQueryFromString } from '@/utils'
 import { useToken } from '@/hooks'
 import { useEffect } from 'react'
-import { TokenResponse } from './models/token-response'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { getAccessToken } from './services/get-access-token'
@@ -17,15 +16,20 @@ export function LoginPage() {
 
   useEffect(() => {
     if (code) {
-      getAccessToken(code).then((response: unknown) => {
-        const { data } = response as TokenResponse
+      getAccessToken(code).then((response) => {
+        if (typeof response === 'undefined') {
+          toast('Hubo un error al hacer la petición')
+          return
+        }
+
+        const { data } = response
         if (data?.error === 'bad_verification_code') {
           console.log('error')
           toast.error('Hubo un problema con el servidor, itente de nuevo.')
           // el código de verificación es incorrecto
           // se debe redirigir a la pagina donde se hace el login, para obtener un nuevo código
           // es home en este caso por ser un ejemplo
-          setLocation('/home')
+          setLocation('/login')
           return
         }
         const access_token = data?.access_token
@@ -34,7 +38,8 @@ export function LoginPage() {
     }
   }, [code])
 
-  //  el next se utilizar para saber cuando realmente cambio el token, y se usa un useEffect para ver  cuando cambia next
+  // el next se utilizar para saber cuando realmente cambio el token
+  // y se usa un useEffect para ver  cuando cambia next
   useEffect(() => {
     if (next) {
       toast.success('Has iniciado sesión correctamente')
