@@ -5,7 +5,7 @@ import { GitMerge } from 'lucide-react'
 
 export function CardDocumentation() {
   return (
-    <Card className="w-[300px] h-[150px] hover:border-foreground transition-colors cursor-pointer">
+    <Card className="w-[300px] h-[150px] hover:border-foreground transition-all cursor-pointer">
       <CardHeader>
         <div className={styles.headerContainer}>
           <Github className="mt-1 h-8 w-fit" />
