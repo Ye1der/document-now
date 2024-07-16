@@ -37,7 +37,7 @@ export function TypeProjectForm({ control }: { control: ControlForm }) {
                     <label htmlFor={element} className="absolute z-10">
                       <div
                         className={cn(
-                          'w-[100px] h-[80px] border border-white rounded-lg flex flex-col justify-around items-center opacity-40 transition-all cursor-pointer hover:bg-white/5',
+                          'w-[100px] h-[80px] border border-foreground rounded-lg flex flex-col justify-around items-center opacity-40 transition-all cursor-pointer hover:bg-white/5',
                           field.value === element && 'opacity-100'
                         )}
                       >

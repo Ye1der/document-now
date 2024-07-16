@@ -30,7 +30,10 @@ export function RepoUrlForm({ control }: { control: ControlForm }) {
       <div className="flex justify-between items-center gap-4 mb-3">
         <Button
           type="button"
-          className={cn('w-full', !selectOwn && 'bg-white/10')}
+          className={cn(
+            'w-full hover:bg-black/10 ',
+            !selectOwn && 'dark:bg-white/10 bg-black/10'
+          )}
           variant={'outline'}
           onClick={() => {
             setSelectOwn(false)
@@ -43,7 +46,10 @@ export function RepoUrlForm({ control }: { control: ControlForm }) {
 
         <Button
           type="button"
-          className={cn('w-full', selectOwn && 'bg-white/10')}
+          className={cn(
+            'w-full hover:bg-black/10 ',
+            selectOwn && 'dark:bg-white/10 bg-black/10'
+          )}
           variant={'outline'}
           onClick={() => {
             setSelectOwn(true)

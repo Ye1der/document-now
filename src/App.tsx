@@ -3,7 +3,7 @@ import { HomePage } from './pages/home/home.page'
 import { LoginPage } from './pages/login/login.page'
 import { Toaster } from './components/ui/sonner'
 import { useEffect } from 'react'
-import { getLocal, TOKEN_KEY } from './utils'
+import { addLocal, getLocal, TOKEN_KEY } from './utils'
 
 function App() {
   // const [match] = useRoute('/home*')
@@ -20,7 +20,8 @@ function App() {
   // }, [match])
 
   useEffect(() => {
-    document.querySelector('html')?.classList.add('dark')
+    const theme = getLocal('theme')
+    if (!theme) addLocal('theme', 'dark')
   }, [])
 
   return (
