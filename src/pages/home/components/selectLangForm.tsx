@@ -31,7 +31,7 @@ export function SelectLangForm({ control }: { control: ControlForm }) {
               <SelectGroup>
                 <SelectLabel> Langs </SelectLabel>
                 {langs.map((lang) => (
-                  <SelectItem value={lang}>
+                  <SelectItem key={lang} value={lang}>
                     <div className="flex items-center justify-start gap-3">
                       <span> {lang} </span>
                     </div>

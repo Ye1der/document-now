@@ -28,7 +28,6 @@ export async function toggleTheme(event: React.MouseEvent<HTMLButtonElement>) {
   ]
 
   await document.startViewTransition(async () => {
-    isDark = !isDark
     const head = document.head || document.getElementsByTagName('head')[0]
     const style = document.createElement('style')
     style.type = 'text/css'
@@ -62,7 +61,7 @@ export async function toggleTheme(event: React.MouseEvent<HTMLButtonElement>) {
     { clipPath: isDark ? clipPath.reverse() : clipPath },
     {
       duration: 400,
-      easing: 'ease-in',
+      easing: 'ease-in-out',
       pseudoElement: `::view-transition-${isDark ? 'old' : 'new'}(root)`
     }
   )
