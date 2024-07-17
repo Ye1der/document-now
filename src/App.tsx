@@ -6,18 +6,18 @@ import { useEffect, useState } from 'react'
 import { addLocal, getLocal, TOKEN_KEY } from './utils'
 
 function App() {
-  // const [match] = useRoute('/home*')
-  // const [, setLocation] = useLocation()
+  const [match] = useRoute('/home*')
+  const [, setLocation] = useLocation()
 
-  // useEffect(() => {
-  //   if (match) {
-  //     const token = getLocal(TOKEN_KEY)
+  useEffect(() => {
+    if (match) {
+      const token = getLocal(TOKEN_KEY)
 
-  //     if (!token) {
-  //       setLocation('/login')
-  //     }
-  //   }
-  // }, [match])
+      if (!token) {
+        setLocation('/login')
+      }
+    }
+  }, [match])
 
   const [startTheme, setStartTheme] = useState(false)
 

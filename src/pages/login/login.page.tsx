@@ -16,25 +16,35 @@ export function LoginPage() {
 
   useEffect(() => {
     if (code) {
-      getAccessToken(code).then((response) => {
-        if (typeof response === 'undefined') {
-          toast('Hubo un error al hacer la petición')
-          return
-        }
+      getAccessToken(code)
+        .then((response) => {
+          if (typeof response === 'undefined') {
+            toast.error('Hubo un error al hacer la petición')
+            return
+          }
 
-        const { data } = response
-        if (data?.error === 'bad_verification_code') {
-          console.log('error')
+          const { data } = response
+
+          if (data?.error === 'bad_verification_code') {
+            console.log('error')
+            toast.error('Hubo un problema con el servidor, itente de nuevo.')
+            // el código de verificación es incorrecto
+            // se debe redirigir a la pagina donde se hace el login, para obtener un nuevo código
+            // es home en este caso por ser un ejemplo
+            setLocation('/login')
+            return
+          }
+          const access_token = data?.access_token
+
+          if (typeof access_token === 'string' && access_token !== '') {
+            setAccessToken(access_token)
+          }
+        })
+        .catch((err) => {
+          console.log(err)
           toast.error('Hubo un problema con el servidor, itente de nuevo.')
-          // el código de verificación es incorrecto
-          // se debe redirigir a la pagina donde se hace el login, para obtener un nuevo código
-          // es home en este caso por ser un ejemplo
           setLocation('/login')
-          return
-        }
-        const access_token = data?.access_token
-        setAccessToken(access_token)
-      })
+        })
     }
   }, [code])
 
@@ -47,11 +57,6 @@ export function LoginPage() {
     }
   }, [next])
 
-  if (code) {
-    // TODO: Cambiar por un loading bonito
-    return <span>Loading...</span>
-  }
-
   const { githubAuthUrl, githubClientId } = config
 
   const redirectUri = 'http://localhost:5173/login'
@@ -61,5 +66,14 @@ export function LoginPage() {
     window.location.href = authRoute
   }
 
-  return <Button onClick={handleClick}>continue with github</Button>
+  return (
+    <div className="flex items-center justify-center w-screen h-screen">
+      {code ? (
+        //  TODO: Cambiar por un loading bonito
+        <span>Loading...</span>
+      ) : (
+        <Button onClick={handleClick}>continue with github</Button>
+      )}
+    </div>
+  )
 }

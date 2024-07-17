@@ -4,7 +4,7 @@ import { NavBar } from './sections/navbar'
 
 export function HomePage() {
   return (
-    <section className="h-screen flex flex-col">
+    <section className="flex flex-col h-screen">
       <NavBar />
       <section className="flex flex-grow overflow-auto">
         <Documentations />

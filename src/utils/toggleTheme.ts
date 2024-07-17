@@ -23,8 +23,8 @@ export async function toggleTheme(event: React.MouseEvent<HTMLButtonElement>) {
     `circle(0px at ${x}px ${y}px)`,
     `circle(${Math.hypot(
       Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
-    )}px at ${x}px ${y}px)`
+      Math.max(y, window.innerHeight - y),
+    )}px at ${x}px ${y}px)`,
   ]
 
   await document.startViewTransition(async () => {
@@ -62,7 +62,7 @@ export async function toggleTheme(event: React.MouseEvent<HTMLButtonElement>) {
     {
       duration: 400,
       easing: 'ease-in-out',
-      pseudoElement: `::view-transition-${isDark ? 'old' : 'new'}(root)`
-    }
+      pseudoElement: `::view-transition-${isDark ? 'old' : 'new'}(root)`,
+    },
   )
 }
