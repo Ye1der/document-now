@@ -2,10 +2,27 @@ import { Github } from '@/components/icons'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import styles from '../styles/cardDocumentation.module.css'
 import { GitMerge } from 'lucide-react'
+import { Documentation } from '@/types'
+import { useGlobalContext } from '@/context/globalContext'
 
 export function CardDocumentation() {
+  const { setCurrentDoc } = useGlobalContext()
+
+  const testDoc: Documentation = {
+    name: 'name project',
+    documentation: 'documentation project',
+    markdown: 'markdown text'
+  }
+
+  const eventClick = () => {
+    setCurrentDoc(testDoc)
+  }
+
   return (
-    <Card className="w-[300px] h-[150px] hover:border-foreground hover:shadow-[0px_0px_50px_-35px] hover:shadow-foreground transition-all cursor-pointer">
+    <Card
+      onClick={eventClick}
+      className="w-[300px] h-[150px] hover:border-foreground hover:shadow-[0px_0px_50px_-35px] hover:shadow-foreground transition-all cursor-pointer"
+    >
       <CardHeader>
         <div className={styles.headerContainer}>
           <Github className="mt-1 h-8 w-fit" />

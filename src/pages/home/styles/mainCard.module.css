@@ -2,7 +2,6 @@
   display: flex;
   position: relative;
   width: 2500px;
-  opacity: 1;
   border-width: 1px;
   border-color: var(--foreground);
   border-right: 0;

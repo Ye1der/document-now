@@ -10,3 +10,9 @@ export type ControlForm = Control<
   },
   any
 >
+
+export interface Documentation {
+  name: string
+  documentation: string
+  markdown: string
+}
