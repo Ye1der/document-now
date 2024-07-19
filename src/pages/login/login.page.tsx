@@ -1,65 +1,66 @@
-import { useSearch, useLocation } from 'wouter'
-import { extractQueryFromString } from '@/utils'
-import { useToken } from '@/hooks'
-import { useEffect } from 'react'
-import { toast } from 'sonner'
-import { Button } from '@/components/ui/button'
-import { getAccessToken } from './services/get-access-token'
-import { config } from '@/config'
+import { useSearch, useLocation } from "wouter"
+import { extractQueryFromString } from "@/utils"
+import { useToken } from "@/hooks"
+import { useEffect } from "react"
+import { toast } from "sonner"
+import { Button } from "@/components/ui/button"
+import { getAccessToken } from "./services/get-access-token"
+import { config } from "@/config"
+import { LoaderCircle } from "lucide-react"
 
 export function LoginPage() {
   const { setAccessToken, next } = useToken()
 
   const [, setLocation] = useLocation()
   const search = useSearch()
-  const code = extractQueryFromString('code', search)
+  const code = extractQueryFromString("code", search)
 
   useEffect(() => {
     if (code) {
       getAccessToken(code)
         .then((response) => {
-          if (typeof response === 'undefined') {
-            toast.error('Hubo un error al hacer la petición')
+          if (typeof response === "undefined") {
+            toast.error("Hubo un error al hacer la petición")
             return
           }
 
           const { data } = response
 
-          if (data?.error === 'bad_verification_code') {
-            console.log('error')
-            toast.error('Hubo un problema con el servidor, itente de nuevo.')
+          if (data?.error === "bad_verification_code") {
+            console.log("error")
+            toast.error("Hubo un problema con el servidor, itente de nuevo.")
             // el código de verificación es incorrecto
             // se debe redirigir a la pagina donde se hace el login, para obtener un nuevo código
             // es home en este caso por ser un ejemplo
-            setLocation('/login')
+            setLocation("/login")
             return
           }
           const access_token = data?.access_token
 
-          if (typeof access_token === 'string' && access_token !== '') {
+          if (typeof access_token === "string" && access_token !== "") {
             setAccessToken(access_token)
           }
         })
         .catch((err) => {
           console.log(err)
-          toast.error('Hubo un problema con el servidor, itente de nuevo.')
-          setLocation('/login')
+          toast.error("Hubo un problema con el servidor, itente de nuevo.")
+          setLocation("/login")
         })
     }
   }, [code])
 
   // el next se utilizar para saber cuando realmente cambio el token
-  // y se usa un useEffect para ver  cuando cambia next
+  // y se usa un useEffect para ver cuando cambia next
   useEffect(() => {
     if (next) {
-      toast.success('Has iniciado sesión correctamente')
-      setLocation('/home')
+      toast.success("Has iniciado sesión correctamente")
+      setLocation("/home")
     }
   }, [next])
 
   const { githubAuthUrl, githubClientId } = config
 
-  const redirectUri = 'http://localhost:5173/login'
+  const redirectUri = "http://localhost:5173/login"
   const authRoute = `${githubAuthUrl}?client_id=${githubClientId}&redirect_uri=${redirectUri}`
 
   const handleClick = () => {
@@ -69,8 +70,9 @@ export function LoginPage() {
   return (
     <div className="flex items-center justify-center w-screen h-screen">
       {code ? (
-        //  TODO: Cambiar por un loading bonito
-        <span>Loading...</span>
+        <span>
+          <LoaderCircle size={30} className="animate-spin" />
+        </span>
       ) : (
         <Button onClick={handleClick}>continue with github</Button>
       )}
