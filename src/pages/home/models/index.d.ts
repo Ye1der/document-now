@@ -110,9 +110,23 @@ export interface Permissions {
   pull: boolean
 }
 
-export interface RepositoryAdapted {
+export interface DocsReposAdapted {
   id: number
   title: string
-  description: string
-  branch?: string
+  content: string
+  repository: {
+    id: Repository['id']
+    name: Repository['name']
+    description: Repository['description']
+    branch: Repository['default_branch']
+  }
+}
+
+export interface DocsRepos {
+  id: number
+  title: string
+  content: string
+  repoName: string
+  userId: number
+  repoInfo: Repository
 }

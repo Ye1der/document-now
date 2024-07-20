@@ -8,7 +8,7 @@
   padding: 30px 25px;
   position: relative;
   transition: all 0.3s ease;
-  min-inline-size: 800px;
+  max-inline-size: 60%;
 
   &.loading {
     align-items: center;

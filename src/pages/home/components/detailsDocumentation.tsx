@@ -1,7 +1,7 @@
 import { Github } from '@/components/icons'
 import { useGlobalContext } from '@/context/globalContext'
 import { cn } from '@/lib/utils'
-import { ChevronLeft, X } from 'lucide-react'
+import { ChevronLeft } from 'lucide-react'
 import { useState } from 'react'
 
 export function DetailsDocumentation() {
@@ -16,7 +16,7 @@ export function DetailsDocumentation() {
   const [option, setOption] = useState<Options>('documentation')
 
   return (
-    <section className="w-full flex flex-col">
+    <section className="flex flex-col w-full">
       <div className="flex items-center gap-3">
         <Github className="w-8 h-8" />
         <h1 className="text-xl font-bold"> Project name </h1>
@@ -44,7 +44,7 @@ export function DetailsDocumentation() {
         ))}
       </nav>
       <hr className="mt-1" />
-      <section className="mt-7 pb-7 flex flex-col flex-grow gap-5 overflow-auto">
+      <section className="flex flex-col flex-grow gap-5 overflow-auto mt-7 pb-7">
         <h1 className="text-2xl font-semibold">Tittle</h1>
 
         <p>

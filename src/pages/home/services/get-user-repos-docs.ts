@@ -1,10 +1,10 @@
 import { config } from '@/config'
-import type { Repository } from '../models'
+import type { DocsRepos } from '../models'
 
-export async function getUserRepos(token: string): Promise<Repository[]> {
+export async function getUserReposDocs(token: string): Promise<DocsRepos[]> {
   const { api } = config
 
-  const response = await fetch(`${api}/github/repos`, {
+  const response = await fetch(`${api}/docs/user`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

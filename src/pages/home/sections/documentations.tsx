@@ -2,23 +2,24 @@ import { useEffect, useState } from 'react'
 import { CardDocumentation } from '../components/cardDocumentation'
 import styles from '../styles/documentations.module.css'
 import { useToken } from '@/hooks'
-import { getUserRepos } from '../services'
+import { getUserReposDocs } from '../services'
 import { toast } from 'sonner'
-import type { RepositoryAdapted } from '../models'
-import { userReposAdapter } from '../adpters'
+import type { DocsReposAdapted } from '../models'
+import { userDocsReposAdapter } from '../adpters'
 import { LoaderCircle } from 'lucide-react'
 
+// los repos que se muestran son los que ya se documentaron
 export function Documentations() {
-  const [repos, setRepos] = useState<RepositoryAdapted[]>([])
+  const [docs, setDocs] = useState<DocsReposAdapted[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const { accessToken: token } = useToken()
 
   useEffect(() => {
     if (token && token !== '') {
-      getUserRepos(token)
+      getUserReposDocs(token)
         .then((data) => {
-          const adaptedData = userReposAdapter(data)
-          setRepos(adaptedData)
+          const adaptedData = userDocsReposAdapter(data)
+          setDocs(adaptedData)
           setLoading(false)
         })
         .catch((err) => {
@@ -33,8 +34,17 @@ export function Documentations() {
       className={`${styles.container} ${loading ? styles.loading : null}`}
     >
       {!loading ? (
-        repos.map((repo) => {
-          return <CardDocumentation {...repo} key={repo.id} />
+        docs.map(({ repository: repo }) => {
+          return (
+            <CardDocumentation
+              title={repo.name}
+              description={
+                repo.description ? repo.description : 'Sin descripción'
+              }
+              branch={repo.branch}
+              key={repo.id}
+            />
+          )
         })
       ) : (
         <LoaderCircle size={30} className="animate-spin" />
