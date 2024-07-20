@@ -5,7 +5,6 @@ export function useToken(init: string | null = null) {
   const [accessToken, setAccessToken] = useState(init)
   const [next, setNext] = useState(false)
 
-  // const currentToken = getLocal(TOKEN_KEY)
   const token = getLocal(TOKEN_KEY)
 
   const tokenIsEmpty = token === '' || token === null || token === 'undefined'

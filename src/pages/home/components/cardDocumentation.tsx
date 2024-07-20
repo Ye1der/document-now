@@ -5,13 +5,23 @@ import { GitMerge } from 'lucide-react'
 import { Documentation } from '@/types'
 import { useGlobalContext } from '@/context/globalContext'
 
-export function CardDocumentation() {
+interface Props {
+  title: string
+  description: string
+  branch?: string
+}
+
+export function CardDocumentation({
+  title,
+  description,
+  branch = 'main',
+}: Props) {
   const { setCurrentDoc } = useGlobalContext()
 
   const testDoc: Documentation = {
     name: 'name project',
     documentation: 'documentation project',
-    markdown: 'markdown text'
+    markdown: 'markdown text',
   }
 
   const eventClick = () => {
@@ -25,17 +35,17 @@ export function CardDocumentation() {
     >
       <CardHeader>
         <div className={styles.headerContainer}>
-          <Github className="mt-1 h-8 w-fit" />
+          <Github className="h-8 mt-1 w-fit" />
           <div>
-            <h1> Repository name </h1>
-            <h2> Description of the repository </h2>
+            <h1>{title} </h1>
+            <h2>{description} </h2>
           </div>
         </div>
       </CardHeader>
       <CardContent>
-        <div className="ml-12 flex gap-2">
+        <div className="flex gap-2 ml-12">
           <GitMerge size={20} />
-          <p className="font-semibold"> Master </p>
+          <p className="font-semibold"> {branch} </p>
         </div>
       </CardContent>
     </Card>

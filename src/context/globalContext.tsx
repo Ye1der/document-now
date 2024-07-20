@@ -4,7 +4,7 @@ import React, {
   Dispatch,
   SetStateAction,
   useContext,
-  useState
+  useState,
 } from 'react'
 
 interface ContentContext {
