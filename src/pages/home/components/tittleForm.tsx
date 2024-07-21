@@ -2,21 +2,22 @@ import { FormField } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ControlForm } from '@/types'
 
-export function ApiKeyForm({ control }: { control: ControlForm }) {
+export function TittleForm({ control }: { control: ControlForm }) {
   return (
     <FormField
-      name="apiKey"
+      name="tittle"
       control={control}
       render={({ field }) => (
         <div className="-mt-1">
-          <label htmlFor="apikey" className="font-semibold text-sm">
-            API Key
+          <label htmlFor="description" className="font-semibold text-sm">
+            Tittle
           </label>
           <Input
             onChange={field.onChange}
-            id="apikey"
             defaultValue={field.value}
-            placeholder="Type your OpenAi API Key"
+            id="description"
+            spellCheck={false}
+            placeholder="Type a tittle for this documentation"
             className="h-10 mt-1"
           />
         </div>

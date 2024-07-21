@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --foreground-invert: white;
+    --backgorund-invert: black;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -45,6 +47,8 @@
 }
 
 .dark {
+  --foreground-invert: #000000;
+  --backgorund-invert: #ffffff;
   --background: 0 0% 3.9%;
   --foreground: 0 0% 98%;
   --card: 0 0% 3.9%;
@@ -72,7 +76,7 @@
   --chart-5: 340 75% 55%;
 }
 
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 0px;
 }
 
@@ -81,7 +85,7 @@
 }
 
 ::view-transition-old(root),
-    ::view-transition-new(root) {
-      animation: none;
-      mix-blend-mode: normal;
-    }
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}

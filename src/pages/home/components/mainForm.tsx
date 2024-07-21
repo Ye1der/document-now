@@ -1,21 +1,17 @@
-import { FileText, ScrollText } from 'lucide-react'
+import { FileText } from 'lucide-react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
-import { TypeProjectForm } from './typeProyectForm'
-import { RepoUrlForm } from './repoUrlForm'
 import { DescriptionForm } from './descriptionForm'
-import { ApiKeyForm } from './apiKeyForm'
 import { SelectLangForm } from './selectLangForm'
+import { TittleForm } from './tittleForm'
 
 export function MainForm() {
   const methods = useForm({
     defaultValues: {
-      type: 'backend',
-      repo: '',
+      tittle: '',
       description: '',
-      apiKey: '',
-      lang: ''
-    }
+      lang: '',
+    },
   })
 
   const onSubmit = (data: unknown) => {
@@ -23,32 +19,21 @@ export function MainForm() {
   }
 
   return (
-    <section className="w-full">
-      <div className="flex items-center gap-3">
-        <ScrollText size={30} />
-        <h1 className="text-xl font-bold">New Documentation</h1>
-      </div>
+    <section className="w-full mt-10">
+      <FormProvider {...methods}>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className="flex flex-col gap-5 mt-5"
+        >
+          <TittleForm control={methods.control} />
+          <DescriptionForm control={methods.control} />
+          <SelectLangForm control={methods.control} />
 
-      <div className="flex w-full mt-4 justify-center items-center">
-        <FormProvider {...methods}>
-          <form
-            onSubmit={methods.handleSubmit(onSubmit)}
-            className="flex flex-col gap-5 mt-5"
-          >
-            <TypeProjectForm control={methods.control} />
-            <RepoUrlForm control={methods.control} />
-            <DescriptionForm control={methods.control} />
-            <div className="flex gap-3">
-              <ApiKeyForm control={methods.control} />
-              <SelectLangForm control={methods.control} />
-            </div>
-
-            <Button type="submit">
-              Document <FileText className="w-4 h-4 ml-2" />
-            </Button>
-          </form>
-        </FormProvider>
-      </div>
+          <Button className="mt-5" type="submit">
+            Document <FileText className="w-4 h-4 ml-2" />
+          </Button>
+        </form>
+      </FormProvider>
     </section>
   )
 }
