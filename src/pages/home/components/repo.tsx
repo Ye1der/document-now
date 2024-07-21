@@ -1,7 +1,7 @@
 import { Github } from '@/components/icons'
 import { ChevronRight } from 'lucide-react'
 
-export function Repository({ name }: { name: string }) {
+export function Repo({ name }: { name: string }) {
   return (
     <div className="group bg-black bg-opacity-10 dark:bg-[#151515] py-3 w-full px-4 rounded-xl flex gap-4 items-center relative cursor-pointer">
       <Github className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity" />
