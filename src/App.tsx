@@ -1,9 +1,10 @@
-import { Redirect, Route, Switch, useLocation, useRoute } from 'wouter'
+import { Route, Switch, useLocation, useRoute } from 'wouter'
 import { HomePage } from './pages/home/home.page'
 import { LoginPage } from './pages/login/login.page'
 import { Toaster } from './components/ui/sonner'
 import { useEffect, useState } from 'react'
 import { addLocal, getLocal, TOKEN_KEY } from './utils'
+import { LandingPage } from './pages/landing/landing.page'
 
 function App() {
   const [match] = useRoute('/home*')
@@ -32,9 +33,7 @@ function App() {
     return (
       <main className="h-screen">
         <Switch>
-          <Route path="/">
-            <Redirect to="/home" />
-          </Route>
+          <Route path="/" component={LandingPage} />
           <Route path="/home" component={HomePage} />
           <Route path="/login" component={LoginPage} />
         </Switch>

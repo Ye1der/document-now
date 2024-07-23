@@ -18,7 +18,7 @@ export function Search({ setArray, array, atributeCompare }: Props) {
   }
 
   return (
-    <div className="w-full flex justify-between items-center mt-8 px-10">
+    <div className="w-full flex justify-between items-center">
       <input
         onChange={(event) => {
           search(event.target.value)
