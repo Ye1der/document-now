@@ -1,3 +1,9 @@
+export interface FectchRepos {
+  repositories: Repository[]
+  nextPage: number
+  lastPage: number | null
+}
+
 export interface Repository {
   id: number
   node_id: string
@@ -108,6 +114,13 @@ export interface Permissions {
   push: boolean
   triage: boolean
   pull: boolean
+}
+
+export interface RepositoryAdapted {
+  id: Repository['id']
+  name: Repository['name']
+  description: Repository['description']
+  branch: Repository['default_branch']
 }
 
 export interface DocsReposAdapted {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { addLocal, getLocal, TOKEN_KEY } from '@/utils'
 
-export function useToken(init: string | null = null) {
+export function useToken(init = getLocal(TOKEN_KEY)) {
   const [accessToken, setAccessToken] = useState(init)
   const [next, setNext] = useState(false)
 

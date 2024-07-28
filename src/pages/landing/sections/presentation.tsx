@@ -1,18 +1,18 @@
-import { ClickIcon, Github } from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { NavBar } from "@/pages/home/sections/navbar";
-import { CornerDownRight, CornerRightDown } from "lucide-react";
+import { ClickIcon, Github } from '@/components/icons'
+import { Button } from '@/components/ui/button'
+import { NavBar } from '@/components/navbar'
+import { CornerDownRight, CornerRightDown } from 'lucide-react'
 
 export function Presentation() {
   return (
     <>
-      <div className="h-16 w-full">
+      <div className="w-full h-16">
         <div className="fixed top-0 w-full">
           <NavBar />
         </div>
       </div>
 
-      <section className="flex justify-center items-center gap-32">
+      <section className="flex items-center justify-center gap-32">
         <div>
           <div className="text-[50px] font-bold">
             <h1> Document your </h1>
@@ -29,7 +29,7 @@ export function Presentation() {
 
           <Button className="py-5 mt-7">
             <h1 className="text-xl"> Continue with github </h1>
-            <Github className="w-6 h-6 fill-background ml-4" />
+            <Github className="w-6 h-6 ml-4 fill-background" />
           </Button>
         </div>
 
@@ -42,6 +42,6 @@ export function Presentation() {
         <h1 className="text-lg font-semibold"> Playground </h1>
         <CornerRightDown className="translate-y-1/2" />
       </div>
-    </>,
+    </>
   )
 }

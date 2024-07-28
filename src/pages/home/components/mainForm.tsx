@@ -4,18 +4,39 @@ import { Button } from '@/components/ui/button'
 import { DescriptionForm } from './descriptionForm'
 import { SelectLangForm } from './selectLangForm'
 import { TittleForm } from './tittleForm'
+import { createDocumentInterceptor } from '../interceptors/create-document'
+import { DocForm } from '../models'
+import { useGlobalContext } from '@/context/globalContext'
+import { createRepoDoc } from '../services'
+import { useToken } from '@/hooks'
+import { toast } from 'sonner'
 
 export function MainForm() {
+  const { currentRepo } = useGlobalContext()
+  const { accessToken: token } = useToken()
+
   const methods = useForm({
     defaultValues: {
-      tittle: '',
+      title: '',
       description: '',
       lang: '',
     },
   })
 
-  const onSubmit = (data: unknown) => {
-    console.log(data)
+  const onSubmit = async (data: unknown) => {
+    try {
+      const docInterceptor = createDocumentInterceptor(
+        data as DocForm,
+        currentRepo.name
+      )
+
+      const response = await createRepoDoc(token, docInterceptor)
+      console.log(response)
+      toast.success('Document created successfully')
+    } catch (error) {
+      console.error(error)
+      toast.error('An error occurred while creating the document')
+    }
   }
 
   return (

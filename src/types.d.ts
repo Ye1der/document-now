@@ -1,8 +1,11 @@
+import { Dispatch, SetStateAction } from 'react'
 import { Control } from 'react-hook-form'
+
+export type Set<T> = Dispatch<SetStateAction<T>>
 
 export type ControlForm = Control<
   {
-    tittle: string
+    title: string
     description: string
     lang: string
   },

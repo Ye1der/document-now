@@ -1,1 +1,1 @@
-export * from './user-docs-repos-adapter'
+export * from './user-repos-adapter'

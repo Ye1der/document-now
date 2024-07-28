@@ -1,1 +1,2 @@
-export * from './get-user-repos-docs'
+export * from './create-repo-doc'
+export * from './get-repos'

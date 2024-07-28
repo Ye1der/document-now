@@ -1,75 +1,93 @@
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { SheetTrigger } from '@/components/ui/sheet'
-import { Repo } from './repo'
-import { useEffect } from 'react'
-import { getRepos } from '../services/get-repos'
+import { ListItem } from './listItem'
+import { Dispatch, useEffect, useRef, useState } from 'react'
+import { getRepos } from '../services'
 import { useGlobalContext } from '@/context/globalContext'
 import { toast } from 'sonner'
-import { useRoute } from 'wouter'
-import { cn } from '@/lib/utils'
-import { Repository } from '../models'
+import { useToken } from '@/hooks'
+import { userReposAdapter } from '../adpters'
+import { CardList } from '../sections/cardList'
+import { Github } from '@/components/icons'
+import { useSearchContext } from '@/context/searchContext'
+import { RepositoryAdapted } from '../models'
 
 export function Repositories() {
-  const { originArrayRepos, setRepos, repos, setCurrentRepo, reposPlayground } =
-    useGlobalContext()
+  const [intersect, setIntersect] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
 
-  const [match] = useRoute('/home*')
+  const [repos, setRepos] = useState<RepositoryAdapted[]>([])
+
+  const { accessToken: token } = useToken()
+
+  const { updateFunction, setAtributeCompare, setArray, setPlaceholder } =
+    useSearchContext()
+  const { setCurrentRepo } = useGlobalContext()
+
+  const originRepos = useRef<RepositoryAdapted[]>([])
 
   useEffect(() => {
-    if (match) {
-      getRepos()
-        .then((repositories) => {
-          originArrayRepos.current = repositories
-          setRepos(repositories)
-        })
-        .catch((err) => {
-          console.log(err)
-          toast.error('Error to get repositories')
-        })
-    }
+    setAtributeCompare('name')
+    setPlaceholder('Search repositories')
+    updateFunction.current = setRepos as Dispatch<unknown>
   }, [])
 
+  useEffect(() => {
+    if (!token) return
+
+    setLoading(true)
+    getRepos(token, currentPage, 30)
+      .then(({ repositories, lastPage }) => {
+        const repos = userReposAdapter(repositories)
+
+        originRepos.current = [...originRepos.current, ...repos]
+
+        setArray(originRepos.current)
+
+        if (!intersect) {
+          setIntersect(true)
+        }
+
+        setRepos((prev) => [...prev, ...repos])
+        setLoading(false)
+
+        if (currentPage === lastPage) {
+          setIntersect(false)
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+        toast.error('Error to get repositories')
+      })
+  }, [currentPage])
+
+  const onIntersect = () => {
+    setCurrentPage((prev) => prev + 1)
+  }
+
   return (
-    <ScrollArea
-      className={cn(
-        !match
-          ? 'w-full h-fit'
-          : `
-        w-full h-[400px] relative
-        after:w-[93%] after:left-1/2 after:-translate-x-1/2 after:absolute after:h-8 after:top-0 after:bg-gradient-to-b after:from-background after:to-background/0
-        before:z-30 before:w-[93%] before:left-1/2 before:-translate-x-1/2 before:absolute before:h-8 before:bottom-0 before:bg-gradient-to-t before:from-background before:to-background/0
-      `,
-      )}
-    >
-      {match ? (
-        <div className="px-5 py-5 flex flex-col gap-4">
-          {repos.map((repo) => (
-            <SheetTrigger
-              key={repo.id}
-              className="w-full"
-              onClick={() => {
-                setCurrentRepo(repo)
-              }}
-            >
-              <Repo name={repo.name} />
-            </SheetTrigger>
-          ))}
-        </div>
+    <CardList intersect={intersect} onIntersect={onIntersect} loading={loading}>
+      {repos.length === 0 && !loading ? (
+        <span>Don't have any repositories</span>
       ) : (
-        <div className=" mt-2 flex flex-col gap-4">
-          {reposPlayground.map((repo) => (
-            <SheetTrigger
-              key={repo.name}
-              className="w-full"
-              onClick={() => {
-                setCurrentRepo(repo as Repository)
-              }}
-            >
-              <Repo name={repo.name} />
-            </SheetTrigger>
-          ))}
-        </div>
+        repos.map((repo) => (
+          <SheetTrigger
+            key={repo.id}
+            className="w-full"
+            onClick={() => {
+              setCurrentRepo(repo)
+            }}
+          >
+            <ListItem
+              icon={
+                <Github className="w-5 h-5 transition-opacity opacity-80 group-hover:opacity-100" />
+              }
+              name={repo.name}
+            />
+          </SheetTrigger>
+        ))
       )}
-    </ScrollArea>
+    </CardList>
   )
 }

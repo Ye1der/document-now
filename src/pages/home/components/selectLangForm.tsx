@@ -11,7 +11,16 @@ import {
 import { ControlForm } from '@/types'
 
 export function SelectLangForm({ control }: { control: ControlForm }) {
-  const langs = ['🇨🇴 Español', '🇺🇸 English']
+  const langs = [
+    {
+      value: 'ES',
+      label: '🇨🇴 Español',
+    },
+    {
+      value: 'EN',
+      label: '🇺🇸 English',
+    },
+  ]
 
   return (
     <FormField
@@ -19,7 +28,7 @@ export function SelectLangForm({ control }: { control: ControlForm }) {
       control={control}
       render={({ field }) => (
         <div className="-mt-1">
-          <label htmlFor="langs" className="font-semibold text-sm">
+          <label htmlFor="langs" className="text-sm font-semibold">
             Language
           </label>
 
@@ -31,9 +40,9 @@ export function SelectLangForm({ control }: { control: ControlForm }) {
               <SelectGroup>
                 <SelectLabel> Langs </SelectLabel>
                 {langs.map((lang) => (
-                  <SelectItem key={lang} value={lang}>
+                  <SelectItem key={lang.value} value={lang.value}>
                     <div className="flex items-center justify-start gap-3">
-                      <span> {lang} </span>
+                      <span> {lang.label} </span>
                     </div>
                   </SelectItem>
                 ))}

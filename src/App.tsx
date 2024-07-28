@@ -5,6 +5,8 @@ import { Toaster } from './components/ui/sonner'
 import { useEffect, useState } from 'react'
 import { addLocal, getLocal, TOKEN_KEY } from './utils'
 import { LandingPage } from './pages/landing/landing.page'
+import { DocumentsPage } from './pages/documents/documents.page'
+import { IndexLayout } from './layouts/index.layout'
 
 function App() {
   const [match] = useRoute('/home*')
@@ -31,14 +33,15 @@ function App() {
 
   if (startTheme)
     return (
-      <main className="h-screen">
-        <Switch>
-          <Route path="/" component={LandingPage} />
-          <Route path="/home" component={HomePage} />
+      <Switch>
+        <Route path="/" component={LandingPage} />
+        <IndexLayout>
+          <Route path="/documents/:reponame" component={DocumentsPage} />
+          <Route path="/home" component={HomePage} nest />
           <Route path="/login" component={LoginPage} />
-        </Switch>
-        <Toaster richColors />
-      </main>
+          <Toaster richColors />
+        </IndexLayout>
+      </Switch>
     )
 }
 

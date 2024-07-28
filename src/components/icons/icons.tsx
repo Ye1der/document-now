@@ -57,60 +57,60 @@ export const DocIcon = ({ className }: Props) => {
       fill="none"
       className={className}
     >
-      <g clip-path="url(#clip0_99_396)">
+      <g clipPath="url(#clip0_99_396)">
         <path
           d="M26.3123 5.16665C26.2826 5.05129 26.2224 4.94602 26.1382 4.86178C26.054 4.77754 25.9487 4.71741 25.8333 4.68765L23.7883 4.16031C23.7534 4.15041 23.7227 4.1294 23.7009 4.10046C23.679 4.07153 23.6672 4.03625 23.6672 3.99998C23.6672 3.96371 23.679 3.92844 23.7009 3.8995C23.7227 3.87056 23.7534 3.84955 23.7883 3.83965L25.8333 3.31198C25.9486 3.28225 26.0539 3.22217 26.1381 3.13799C26.2224 3.05382 26.2825 2.94861 26.3123 2.83331L26.8397 0.788315C26.8495 0.753287 26.8705 0.722429 26.8994 0.700446C26.9284 0.678464 26.9638 0.666565 27.0002 0.666565C27.0365 0.666565 27.0719 0.678464 27.1009 0.700446C27.1299 0.722429 27.1509 0.753287 27.1607 0.788315L27.6877 2.83331C27.7174 2.94867 27.7776 3.05395 27.8618 3.13819C27.946 3.22243 28.0513 3.28256 28.1667 3.31231L30.2117 3.83931C30.2468 3.84901 30.2778 3.86998 30.2999 3.89901C30.322 3.92803 30.334 3.9635 30.334 3.99998C30.334 4.03646 30.322 4.07193 30.2999 4.10096C30.2778 4.12998 30.2468 4.15095 30.2117 4.16065L28.1667 4.68765C28.0513 4.71741 27.946 4.77754 27.8618 4.86178C27.7776 4.94602 27.7174 5.05129 27.6877 5.16665L27.1603 7.21165C27.1505 7.24668 27.1295 7.27753 27.1006 7.29952C27.0716 7.3215 27.0362 7.3334 26.9998 7.3334C26.9635 7.3334 26.9281 7.3215 26.8991 7.29952C26.8701 7.27753 26.8491 7.24668 26.8393 7.21165L26.3123 5.16665Z"
           fill="white"
           className="stroke-foreground"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
-      <g clip-path="url(#clip1_99_396)">
+      <g clipPath="url(#clip1_99_396)">
         <path
           d="M38.5545 11.1042C38.5135 10.9456 38.4309 10.8008 38.315 10.685C38.1992 10.5691 38.0544 10.4865 37.8958 10.4456L35.084 9.72047C35.036 9.70685 34.9938 9.67796 34.9637 9.63818C34.9336 9.59839 34.9174 9.54988 34.9174 9.50001C34.9174 9.45014 34.9336 9.40164 34.9637 9.36185C34.9938 9.32206 35.036 9.29317 35.084 9.27955L37.8958 8.55401C38.0544 8.51313 38.1991 8.43053 38.3149 8.31478C38.4308 8.19904 38.5135 8.05438 38.5545 7.89585L39.2795 5.08397C39.293 5.03581 39.3219 4.99338 39.3617 4.96315C39.4016 4.93293 39.4502 4.91656 39.5002 4.91656C39.5502 4.91656 39.5989 4.93293 39.6387 4.96315C39.6786 4.99338 39.7074 5.03581 39.7209 5.08397L40.4455 7.89585C40.4865 8.05446 40.5691 8.19922 40.685 8.31505C40.8008 8.43088 40.9455 8.51355 41.1042 8.55447L43.916 9.2791C43.9644 9.29243 44.007 9.32127 44.0374 9.36117C44.0678 9.40108 44.0843 9.44985 44.0843 9.50001C44.0843 9.55017 44.0678 9.59895 44.0374 9.63885C44.007 9.67876 43.9644 9.70759 43.916 9.72093L41.1042 10.4456C40.9455 10.4865 40.8008 10.5691 40.685 10.685C40.5691 10.8008 40.4865 10.9456 40.4455 11.1042L39.7205 13.9161C39.707 13.9642 39.6781 14.0066 39.6383 14.0369C39.5984 14.0671 39.5498 14.0835 39.4998 14.0835C39.4498 14.0835 39.4011 14.0671 39.3613 14.0369C39.3214 14.0066 39.2926 13.9642 39.2791 13.9161L38.5545 11.1042Z"
           className="fill-foreground stroke-foreground"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
-      <g clip-path="url(#clip2_99_396)">
+      <g clipPath="url(#clip2_99_396)">
         <path
           d="M22.4301 12.2322L13.7338 14.2998C12.9333 14.4901 12.4386 15.2933 12.629 16.0938L13.3182 18.9926C13.5085 19.7931 14.3117 20.2877 15.1122 20.0974L23.8085 18.0298C24.609 17.8395 25.1036 17.0363 24.9133 16.2358L24.2241 13.337C24.0338 12.5365 23.2306 12.0419 22.4301 12.2322Z"
           stroke="#E3499C"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M24.5687 14.7864L27.4675 14.0972C28.2363 13.9145 29.0462 14.0446 29.7191 14.4589C30.392 14.8733 30.8727 15.538 31.0555 16.3068L35.8799 36.5984C36.0627 37.3672 35.9326 38.1771 35.5182 38.85C35.1038 39.5229 34.4391 40.0036 33.6703 40.1864L16.2775 44.3215C15.5087 44.5043 14.6988 44.3742 14.0259 43.9599C13.3531 43.5455 12.8723 42.8808 12.6896 42.112L7.86516 21.8204C7.68238 21.0516 7.81248 20.2417 8.22686 19.5688C8.64124 18.8959 9.30595 18.4152 10.0748 18.2324L12.9735 17.5432"
           stroke="url(#paint0_linear_99_396)"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M17.869 31.6926L24.0819 30.3139"
           className="stroke-foreground"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M16.6874 26.7232L25.3838 24.6556"
           className="stroke-foreground"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
         <path
           d="M19.0504 36.6619L27.7468 34.5943"
           className="stroke-foreground"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </g>
       <defs>
@@ -122,8 +122,8 @@ export const DocIcon = ({ className }: Props) => {
           y2="42.254"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#E3499C" />
-          <stop offset="0.595" stop-color="#6C6AEE" />
+          <stop stopColor="#E3499C" />
+          <stop offset="0.595" stopColor="#6C6AEE" />
         </linearGradient>
         <clipPath id="clip0_99_396">
           <rect width="8" height="8" fill="white" transform="translate(23)" />
@@ -162,37 +162,37 @@ export const ClickIcon = ({ className }: Props) => {
       <path
         d="M25.875 25.875L40.25 60.375L45.425 45.425L60.375 40.25L25.875 25.875Z"
         className="stroke-foreground"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M20.7 6.32501L23 14.6625"
         stroke="#C254CF"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M14.6625 23L6.32495 20.7"
         stroke="#945EF9"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M40.25 11.7875L34.5 17.25"
         stroke="#E3499C"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M17.25 34.5L11.7875 40.25"
         stroke="#6C6AEE"
-        stroke-width="5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )

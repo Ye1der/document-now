@@ -5,11 +5,11 @@ import { ControlForm } from '@/types'
 export function TittleForm({ control }: { control: ControlForm }) {
   return (
     <FormField
-      name="tittle"
+      name="title"
       control={control}
       render={({ field }) => (
         <div className="-mt-1">
-          <label htmlFor="description" className="font-semibold text-sm">
+          <label htmlFor="description" className="text-sm font-semibold">
             Tittle
           </label>
           <Input
