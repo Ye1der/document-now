@@ -6,9 +6,11 @@ import { toast } from 'sonner'
 import { useState } from 'react'
 import { DocumentsLayout } from './layouts/documents.layout'
 import { Main, Sidebar } from './components'
+import { marked } from 'marked'
 
 export function DocumentsPage() {
   const [content, setContent] = useState<string>('')
+  const [sidebarStructure, setSidebarStructure] = useState<SidebarContent[]>([])
   const { accessToken: token } = useToken()
   const params = useParams()
 
@@ -17,7 +19,34 @@ export function DocumentsPage() {
 
     getDocByReponame(token, params.reponame)
       .then((content) => {
-        setContent(content)
+        const parsedContent = marked.parse(content) as string
+
+        const filteredContent: string[] = parsedContent
+          .split('\n')
+          .filter((line) => line.startsWith('<h2>') || line.startsWith('<h3>'))
+
+        const data: SidebarContent[] = []
+
+        for (const line of filteredContent) {
+          // console.log(strcuture)
+          if (line.startsWith('<h2>')) {
+            data.push({
+              title: line.replace('<h2>', '').replace('</h2>', ''),
+              children: [],
+            })
+          }
+
+          if (line.startsWith('<h3>')) {
+            const index = data.length - 1
+
+            data[index].children.push(
+              line.replace('<h3>', '').replace('</h3>', '')
+            )
+          }
+        }
+
+        setSidebarStructure(data)
+        setContent(parsedContent)
       })
       .catch((err) => {
         console.log(err)
@@ -27,7 +56,7 @@ export function DocumentsPage() {
 
   return (
     <DocumentsLayout>
-      <Sidebar />
+      <Sidebar data={sidebarStructure} />
       <Main content={content} />
     </DocumentsLayout>
   )
