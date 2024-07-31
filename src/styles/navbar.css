@@ -10,15 +10,10 @@
   animation-timeline: scroll(root block);
 
   h1 {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 700;
     animation: reSizeTitle auto linear both;
     animation-timeline: scroll(root block);
-  }
-
-  div {
-    display: flex;
-    gap: 10px;
   }
 }
 

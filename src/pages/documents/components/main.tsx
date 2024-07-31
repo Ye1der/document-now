@@ -5,7 +5,7 @@ export function Main({ content }: { content: string }) {
   return (
     <ScrollArea className="h-full">
       <div
-        className={styles.markdown}
+        className={`${styles.markdown}`}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </ScrollArea>

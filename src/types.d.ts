@@ -12,6 +12,11 @@ export type ControlForm = Control<
   any
 >
 
+export enum Theme {
+  light = 'light',
+  dark = 'dark',
+}
+
 export interface Documentation {
   name: string
   documentation: string

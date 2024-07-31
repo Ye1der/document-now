@@ -16,7 +16,6 @@ export function Search({
 }: Props) {
   const [value, setValue] = useState('')
 
-  // TODO: Ver si hay una mejor forma de hacer esto, si invulucrar el useEffect
   useEffect(() => {
     if (value !== '') {
       search(value)

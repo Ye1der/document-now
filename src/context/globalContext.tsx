@@ -1,10 +1,9 @@
 import { RepositoryAdapted } from '@/pages/home/models'
+import { Set, Theme } from '@/types.d'
 
 import React, {
   createContext,
-  Dispatch,
   MutableRefObject,
-  SetStateAction,
   useContext,
   useRef,
   useState,
@@ -12,13 +11,15 @@ import React, {
 
 interface ContentContext {
   currentRepo: RepositoryAdapted
-  setCurrentRepo: Dispatch<SetStateAction<RepositoryAdapted>>
+  setCurrentRepo: Set<RepositoryAdapted>
   repos: RepositoryAdapted[]
-  setRepos: Dispatch<SetStateAction<RepositoryAdapted[]>>
+  setRepos: Set<RepositoryAdapted[]>
   originArrayRepos: MutableRefObject<RepositoryAdapted[]>
   reposPlayground: { name: string }[]
-  setReposPlayground: Dispatch<SetStateAction<{ name: string }[]>>
+  setReposPlayground: Set<{ name: string }[]>
   originReposPlayground: MutableRefObject<{ name: string }[]>
+  setTheme: Set<Theme>
+  theme: Theme
 }
 
 const globalContext = createContext({} as ContentContext)
@@ -27,6 +28,7 @@ export function GlobalContext({ children }: { children: React.ReactNode }) {
   const [repos, setRepos] = useState<RepositoryAdapted[]>([])
   const originArrayRepos = useRef<RepositoryAdapted[]>([])
   const [currentRepo, setCurrentRepo] = useState({} as RepositoryAdapted)
+  const [theme, setTheme] = useState<Theme>(Theme.dark)
 
   const [reposPlayground, setReposPlayground] = useState([
     { name: 'frontend' },
@@ -48,6 +50,8 @@ export function GlobalContext({ children }: { children: React.ReactNode }) {
         reposPlayground,
         setReposPlayground,
         originReposPlayground,
+        theme,
+        setTheme,
       }}
     >
       {children}
