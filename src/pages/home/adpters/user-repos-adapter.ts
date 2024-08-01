@@ -6,5 +6,6 @@ export function userReposAdapter(data: Repository[]): RepositoryAdapted[] {
     name: repo.name,
     description: repo.description,
     branch: repo.default_branch,
+    owner: repo.owner.login,
   }))
 }

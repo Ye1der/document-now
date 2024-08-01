@@ -27,7 +27,8 @@ export function MainForm() {
     try {
       const docInterceptor = createDocumentInterceptor(
         data as DocForm,
-        currentRepo.name
+        currentRepo.name,
+        currentRepo.owner
       )
 
       const response = await createRepoDoc(token, docInterceptor)

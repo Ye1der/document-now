@@ -22,6 +22,7 @@ export function Repositories() {
 
   const { updateFunction, setAtributeCompare, setArray, setPlaceholder } =
     useSearchContext()
+
   const { setCurrentRepo } = useGlobalContext()
 
   const originRepos = useRef<RepositoryAdapted[]>([])

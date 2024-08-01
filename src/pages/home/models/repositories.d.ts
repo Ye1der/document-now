@@ -121,6 +121,7 @@ export interface RepositoryAdapted {
   name: Repository['name']
   description: Repository['description']
   branch: Repository['default_branch']
+  owner: Repository['owner']['login']
 }
 
 export interface DocsReposAdapted {
