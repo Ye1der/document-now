@@ -6,11 +6,7 @@ import { CornerDownRight, CornerRightDown } from 'lucide-react'
 export function Presentation() {
   return (
     <>
-      <div className="w-full h-16">
-        <div className="fixed top-0 w-full">
-          <NavBar />
-        </div>
-      </div>
+      <NavBar />
 
       <section className="flex items-center justify-center gap-32">
         <div>

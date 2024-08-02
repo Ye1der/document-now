@@ -6,18 +6,18 @@
   padding: 15px 25px;
   background-color: var(--background);
   backdrop-filter: blur(10px);
-  animation: reSizeNav auto linear both;
-  animation-timeline: scroll(root block);
+  /* animation: reSizeNav auto linear both;
+  animation-timeline: scroll(root block); */
 
   h1 {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
-    animation: reSizeTitle auto linear both;
-    animation-timeline: scroll(root block);
+    /* animation: reSizeTitle auto linear both;
+    animation-timeline: scroll(root block); */
   }
 }
 
-.docIcon {
+/* .docIcon {
   animation: reSizeIcon auto linear both;
   animation-timeline: scroll(root block);
 }
@@ -66,4 +66,4 @@
   100% {
     padding: 10px 20px;
   }
-}
+} */

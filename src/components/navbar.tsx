@@ -13,7 +13,7 @@ export function NavBar() {
 
   return (
     <nav className={'nav'}>
-      <div className="flex items-center flex-1 gap-8">
+      <div className="flex items-center gap-8">
         <Link to={'/'}>
           <div className="flex items-center gap-2">
             <DocIcon className={'docIcon'} />
@@ -21,20 +21,15 @@ export function NavBar() {
           </div>
         </Link>
 
-        <Link to="/home/repositories">
+        <Link to="/home/repositories" className={'mt-1'}>
           <span
             className={`
-              text-base
-              font-meidum
-              text-black
-              text-opacity-70
-              hover:text-opacity-100
-              transition-colors
+              font-semibold
+              text-foreground
+              opacity-70
+              hover:opacity-100
+              transition-opacity
               duration-200
-
-              dark:text-white
-              dark:text-opacity-60
-              dark:hover:text-opacity-100
             `}
           >
             Repositories
@@ -50,7 +45,12 @@ export function NavBar() {
           <Sun className="block w-5 h-5 dark:hidden" />
         </button>
 
-        <Button variant={'ghost'}>
+        <Button
+          variant={'ghost'}
+          onClick={() => {
+            window.open('https://github.com/Ye1der/document-now', '_blank')
+          }}
+        >
           Star us on Github <Star className="w-4 h-4 ml-2" />
         </Button>
 
