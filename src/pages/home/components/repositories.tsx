@@ -10,6 +10,7 @@ import { CardList } from '../sections/cardList'
 import { Github } from '@/components/icons'
 import { useSearchContext } from '@/context/searchContext'
 import { RepositoryAdapted } from '../models'
+import { GithubIcon } from 'lucide-react'
 
 export function Repositories() {
   const [intersect, setIntersect] = useState(false)
@@ -70,7 +71,10 @@ export function Repositories() {
   return (
     <CardList intersect={intersect} onIntersect={onIntersect} loading={loading}>
       {repos.length === 0 && !loading ? (
-        <span>Don't have any repositories</span>
+        <div className="flex h-[330px] flex-col w-full items-center justify-center gap-3">
+          <GithubIcon size={80} className="opacity-50" />
+          <h1 className=" font-semibold opacity-50">no repositories</h1>
+        </div>
       ) : (
         repos.map((repo) => (
           <SheetTrigger

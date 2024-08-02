@@ -50,7 +50,10 @@ export function Documents() {
   return (
     <CardList loading={loading}>
       {documents.length === 0 && !loading ? (
-        <span>Don't have any documentation</span>
+        <div className="flex h-[330px] flex-col w-full items-center justify-center gap-4">
+          <FileText size={80} className="opacity-50 -rotate-12" />
+          <h1 className=" font-semibold opacity-50">no documents</h1>
+        </div>
       ) : (
         documents.map((doc) => (
           <ListItem
