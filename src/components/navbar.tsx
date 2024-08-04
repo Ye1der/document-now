@@ -6,6 +6,7 @@ import '../styles/navbar.css'
 import { useLocation } from 'wouter'
 import { Link } from 'wouter'
 import { useTheme } from '@/hooks'
+import { getLocal } from '@/utils'
 
 export function NavBar() {
   const [, setLocation] = useLocation()
@@ -54,9 +55,11 @@ export function NavBar() {
           Star us on Github <Star className="w-4 h-4 ml-2" />
         </Button>
 
-        <Button onClick={() => setLocation('~/login')}>
-          Log In <Github className="w-5 h-5 ml-3 fill-background" />
-        </Button>
+        {getLocal('access_token') == undefined && (
+          <Button onClick={() => setLocation('~/login')}>
+            Log In <Github className="w-5 h-5 ml-3 fill-background" />
+          </Button>
+        )}
       </div>
     </nav>
   )

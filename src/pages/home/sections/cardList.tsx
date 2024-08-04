@@ -49,7 +49,7 @@ export function CardList({
     <ScrollArea
       ref={scrollAreaRef}
       className={`
-      w-full h-[400px] relative
+      w-full h-[350px] relative
       after:w-[93%] after:left-1/2 after:-translate-x-1/2 after:absolute after:h-8 after:top-0 after:bg-gradient-to-b after:from-background after:to-background/0
       before:z-30 before:w-[93%] before:left-1/2 before:-translate-x-1/2 before:absolute before:h-8 before:bottom-0 before:bg-gradient-to-t before:from-background before:to-background/0
     `}

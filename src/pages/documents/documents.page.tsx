@@ -45,8 +45,17 @@ export function DocumentsPage() {
           }
         }
 
+        const contentHtml = parsedContent.split('\n').map((line) => {
+          if (line.includes('<h2>')) {
+            const id = line.replace('<h2>', '').replace('</h2>', '')
+            return line.replace('<h2>', `<h2 id="${id}">`)
+          }
+
+          return line
+        })
+
         setSidebarStructure(data)
-        setContent(parsedContent)
+        setContent(contentHtml.join('\n'))
       })
       .catch((err) => {
         console.log(err)

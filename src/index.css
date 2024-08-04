@@ -76,16 +76,33 @@
   --chart-5: 340 75% 55%;
 }
 
-*::-webkit-scrollbar {
-  width: 0px;
+::-webkit-scrollbar {
+  width: 7px;
+  position: absolute;
 }
 
-* {
-  scrollbar-width: none;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e5e5e5;
+  border-radius: 100px;
+}
+
+.dark {
+  ::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 100px;
+  }
 }
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+* {
+  scroll-behavior: smooth;
 }

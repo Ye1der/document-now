@@ -1,6 +1,6 @@
 .markdown {
   & > * {
-    color: #dedede;
+    color: var(--foreground);
   }
   h1,
   h2,
@@ -8,13 +8,13 @@
   h4,
   h5,
   h6 {
-    color: #ffffff;
+    color: var(--foreground);
     font-weight: bold;
     margin-bottom: 1.5rem;
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin-bottom: 2rem;
   }
 
@@ -43,10 +43,11 @@
 
   p {
     margin-bottom: 1.5rem;
+    color: var(--foreground);
   }
 
   a {
-    color: #1e90ff;
+    color: #1b68b4;
     text-decoration: none;
     transition: color 0.3s ease;
   }
@@ -62,25 +63,24 @@
   }
 
   code {
-    background-color: #333333;
-    color: #bdbdbd;
+    background-color: #e0e0e0;
     padding: 0.2em 0.4em;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
   }
 
   pre {
-    background-color: #333333;
-    color: #ffffff;
-    padding: 1em;
-    border-radius: 8px;
+    margin-top: 8px;
+    background-color: #e0e0e0;
+    padding: 8px;
+    border-radius: 5px;
     overflow-x: auto;
   }
 
   blockquote {
     border-left: 5px solid #ffd700;
     padding-left: 1em;
-    color: #cccccc;
+    color: var(--foreground);
     margin: 1em 0;
     font-style: italic;
   }
@@ -120,11 +120,23 @@
     margin-top: 2em;
     text-align: center;
     font-size: 0.9em;
-    color: #888888;
   }
 
   hr {
-    color: #ffffff;
     margin-block: 1.5rem;
+  }
+}
+
+.dark {
+  .markdown {
+    code {
+      background-color: #151515;
+      
+    }
+  
+    pre {
+      background-color: #151515;
+      
+    }
   }
 }
