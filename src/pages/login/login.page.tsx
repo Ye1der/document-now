@@ -1,6 +1,6 @@
 import { useSearch, useLocation } from 'wouter'
 import { extractQueryFromString } from '@/utils'
-import { useToken } from '@/hooks'
+import { useUser } from '@/hooks'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -8,26 +8,31 @@ import { config } from '@/config'
 import { LoaderCircle } from 'lucide-react'
 
 export function LoginPage() {
-  const { setAccessToken, next } = useToken()
+  const { user, login } = useUser()
 
   const [, setLocation] = useLocation()
   const search = useSearch()
   const token = extractQueryFromString('token', search)
 
   useEffect(() => {
-    if (token) {
-      setAccessToken(token)
-    }
-  }, [token])
-
-  // el next se utilizar para saber cuando realmente cambio el token
-  // y se usa un useEffect para ver cuando cambia next
-  useEffect(() => {
-    if (next) {
-      toast.success('Has iniciado sesión correctamente')
+    if (user) {
       setLocation('/home')
+      toast.info('You are already logged in')
     }
-  }, [next])
+  }, [])
+
+  useEffect(() => {
+    if (token) {
+      if (token === user?.token) {
+        setLocation('/home')
+        toast.success('Has iniciado sesión correctamente')
+        return
+      }
+
+      // Hace la petición para obtener la info del usuario y lo guarda en el localStorage con todo y token
+      login(token)
+    }
+  }, [token, user])
 
   const { api } = config
 

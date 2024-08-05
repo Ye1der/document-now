@@ -1,11 +1,14 @@
+import { Set } from '@/types'
 import { SearchIcon } from 'lucide-react'
-import React, { SetStateAction, useEffect, useState } from 'react'
+import React, { SetStateAction, useEffect } from 'react'
 
 interface Props {
   array: unknown
   setArray: React.Dispatch<SetStateAction<unknown>>
   atributeCompare: string
   placeholder?: string
+  setValue: Set<string>
+  value: string
 }
 
 export function Search({
@@ -13,9 +16,9 @@ export function Search({
   array,
   atributeCompare,
   placeholder = 'Search...',
+  value = '',
+  setValue,
 }: Props) {
-  const [value, setValue] = useState('')
-
   useEffect(() => {
     if (value !== '') {
       search(value)
@@ -34,11 +37,12 @@ export function Search({
   return (
     <div className="flex items-center justify-between w-full px-10 mt-8">
       <input
+        value={value}
+        required
         onChange={(event) => {
           setValue(event.target.value)
           search(event.target.value)
         }}
-        required
         placeholder={placeholder}
         className="bg-transparent outline-none peer text-foreground placeholder:opacity-70 focus:placeholder:opacity-100 placeholder:transition-opacity"
       />

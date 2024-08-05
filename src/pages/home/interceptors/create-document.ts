@@ -1,4 +1,4 @@
-import { DocForm, DocumentInterceptor } from '../models'
+import { DocForm, DocumentInterceptor } from '@/models'
 
 export function createDocumentInterceptor(
   data: DocForm,

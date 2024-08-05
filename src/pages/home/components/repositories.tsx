@@ -4,7 +4,7 @@ import { Dispatch, useEffect, useRef, useState } from 'react'
 import { getRepos } from '../services'
 import { useGlobalContext } from '@/context/globalContext'
 import { toast } from 'sonner'
-import { useToken } from '@/hooks'
+import { useUser } from '@/hooks'
 import { userReposAdapter } from '../adpters'
 import { CardList } from '../sections/cardList'
 import { Github } from '@/components/icons'
@@ -19,10 +19,15 @@ export function Repositories() {
 
   const [repos, setRepos] = useState<RepositoryAdapted[]>([])
 
-  const { accessToken: token } = useToken()
+  const { user } = useUser()
 
-  const { updateFunction, setAtributeCompare, setArray, setPlaceholder } =
-    useSearchContext()
+  const {
+    updateFunction,
+    setAtributeCompare,
+    setArray,
+    setPlaceholder,
+    setValue,
+  } = useSearchContext()
 
   const { setCurrentRepo } = useGlobalContext()
 
@@ -32,13 +37,17 @@ export function Repositories() {
     setAtributeCompare('name')
     setPlaceholder('Search repositories')
     updateFunction.current = setRepos as Dispatch<unknown>
+
+    return () => {
+      setValue('')
+    }
   }, [])
 
   useEffect(() => {
-    if (!token) return
+    if (!user) return
 
     setLoading(true)
-    getRepos(token, currentPage, 30)
+    getRepos(user.token, currentPage, 30)
       .then(({ repositories, lastPage }) => {
         const repos = userReposAdapter(repositories)
 
@@ -73,7 +82,7 @@ export function Repositories() {
       {repos.length === 0 && !loading ? (
         <div className="flex h-[330px] flex-col w-full items-center justify-center gap-3">
           <GithubIcon size={80} className="opacity-50" />
-          <h1 className=" font-semibold opacity-50">no repositories</h1>
+          <h1 className="font-semibold opacity-50 ">no repositories</h1>
         </div>
       ) : (
         repos.map((repo) => (

@@ -6,8 +6,13 @@ import {
 } from '@/components/ui/sheet'
 import { MainForm } from './mainForm'
 import { useGlobalContext } from '@/context/globalContext'
+import { Set } from '@/types'
 
-export function SheetRepo() {
+interface Props {
+  setOpen: Set<boolean>
+}
+
+export function SheetRepo(props: Props) {
   const { currentRepo } = useGlobalContext()
 
   return (
@@ -21,7 +26,7 @@ export function SheetRepo() {
         </SheetDescription>
       </SheetHeader>
 
-      <MainForm />
+      <MainForm {...props} />
     </SheetContent>
   )
 }

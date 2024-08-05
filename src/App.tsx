@@ -1,4 +1,4 @@
-import { Route, Switch, useLocation, useRoute } from 'wouter'
+import { Route, Switch } from 'wouter'
 import { HomePage } from './pages/home/home.page'
 import { LoginPage } from './pages/login/login.page'
 import { Toaster } from './components/ui/sonner'
@@ -6,22 +6,12 @@ import { useEffect, useState } from 'react'
 import { LandingPage } from './pages/landing/landing.page'
 import { DocumentsPage } from './pages/documents/documents.page'
 import { IndexLayout } from './layouts/index.layout'
-import { useTheme, useToken } from './hooks'
+import { useTheme } from './hooks'
 import { Theme } from './types.d'
+import { DocumentProvider } from './context/documentContext'
 
 function App() {
-  const { accessToken: token } = useToken()
   const { theme, setTheme } = useTheme()
-  const [match] = useRoute('/home/*')
-  const [, setLocation] = useLocation()
-
-  useEffect(() => {
-    if (match) {
-      if (!token) {
-        setLocation('/login')
-      }
-    }
-  }, [match])
 
   const [startTheme, setStartTheme] = useState(false)
 
@@ -37,7 +27,9 @@ function App() {
         <Route path="/" component={LandingPage} />
         <IndexLayout>
           <Route path="/documents/:reponame" component={DocumentsPage} />
-          <Route path="/home" component={HomePage} nest />
+          <DocumentProvider>
+            <Route path="/home" component={HomePage} nest />
+          </DocumentProvider>
           <Route path="/login" component={LoginPage} />
           <Toaster richColors />
         </IndexLayout>

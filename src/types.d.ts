@@ -22,3 +22,12 @@ export interface Documentation {
   documentation: string
   markdown: string
 }
+
+interface TempDoc {
+  title: string
+  repoName: string
+  username: string
+  loading: boolean
+  id?: number
+  message?: string
+}

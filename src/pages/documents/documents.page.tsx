@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useParams } from 'wouter'
 import { getDocByReponame } from '@/services'
-import { useToken } from '@/hooks'
+import { useUser } from '@/hooks'
 import { toast } from 'sonner'
 import { useState } from 'react'
 import { DocumentsLayout } from './layouts/documents.layout'
@@ -11,13 +11,15 @@ import { marked } from 'marked'
 export function DocumentsPage() {
   const [content, setContent] = useState<string>('')
   const [sidebarStructure, setSidebarStructure] = useState<SidebarContent[]>([])
-  const { accessToken: token } = useToken()
+  const { user } = useUser()
   const params = useParams()
 
   useEffect(() => {
     if (!params.reponame) return
 
-    getDocByReponame(token, params.reponame)
+    if (!user) return
+
+    getDocByReponame(user.token, params.reponame)
       .then((content) => {
         const parsedContent = marked.parse(content) as string
 

@@ -21,4 +21,5 @@ export interface DocumentsAdapted {
 
 export interface DocumentInterceptor extends DocForm {
   repoName: Documents['repoName']
+  owner: string
 }

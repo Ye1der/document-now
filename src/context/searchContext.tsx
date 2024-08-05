@@ -15,10 +15,13 @@ interface Context {
   placeholder?: string
   setAtributeCompare: Set<string>
   setPlaceholder: Set<string>
+  value: string
+  setValue: Set<string>
 }
 const SearchContext = createContext({} as Context)
 
 export function SearchProvider({ children }: { children: React.ReactNode }) {
+  const [value, setValue] = useState('')
   const [array, setArray] = useState<Context['array']>({} as Context['array'])
 
   const [atributeCompare, setAtributeCompare] = useState<string>('')
@@ -36,6 +39,8 @@ export function SearchProvider({ children }: { children: React.ReactNode }) {
         setAtributeCompare,
         placeholder,
         setPlaceholder,
+        value,
+        setValue,
       }}
     >
       {children}

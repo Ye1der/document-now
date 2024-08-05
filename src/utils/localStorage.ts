@@ -10,6 +10,6 @@ export function getLocal(item: string) {
   return JSON.parse(data)
 }
 
-export function removeLocal(item: string) {
+export function removeLocal(item: string): void {
   localStorage.removeItem(item)
 }

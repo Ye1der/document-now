@@ -1,4 +1,10 @@
-import { FormField } from '@/components/ui/form'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { ControlForm } from '@/types'
 
@@ -8,19 +14,16 @@ export function TittleForm({ control }: { control: ControlForm }) {
       name="title"
       control={control}
       render={({ field }) => (
-        <div className="-mt-1">
-          <label htmlFor="description" className="text-sm font-semibold">
-            Tittle
-          </label>
-          <Input
-            onChange={field.onChange}
-            defaultValue={field.value}
-            id="description"
-            spellCheck={false}
-            placeholder="Type a tittle for this documentation"
-            className="h-10 mt-1"
-          />
-        </div>
+        <FormItem>
+          <FormLabel>Tittle</FormLabel>
+          <FormControl>
+            <Input
+              placeholder="Type a tittle for this documentation"
+              {...field}
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
       )}
     />
   )
