@@ -72,7 +72,7 @@ module.exports = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       gridTemplateColumns: {
-        layout: '250px minmax(900px, 1fr)',
+        layout: '300px minmax(900px, 1fr)',
       },
     },
   },

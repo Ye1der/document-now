@@ -30,20 +30,10 @@ export function DocumentsPage() {
         const data: SidebarContent[] = []
 
         for (const line of filteredContent) {
-          // console.log(strcuture)
           if (line.startsWith('<h2>')) {
             data.push({
               title: line.replace('<h2>', '').replace('</h2>', ''),
-              children: [],
             })
-          }
-
-          if (line.startsWith('<h3>')) {
-            const index = data.length - 1
-
-            data[index].children.push(
-              line.replace('<h3>', '').replace('</h3>', '')
-            )
           }
         }
 
