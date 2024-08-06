@@ -1,4 +1,4 @@
-import { DocumentInterceptor } from '../models'
+import { DocumentInterceptor } from '@/models'
 import { config } from '@/config'
 
 export async function createRepoDoc(token: string, data: DocumentInterceptor) {
