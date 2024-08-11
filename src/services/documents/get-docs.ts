@@ -1,9 +1,10 @@
 import { config } from '@/config'
-import { Documents } from '@/models'
+import { IDocuments } from '@/models/documents'
 
 // la idea es que el servicio no tenga solo se encargue de hacer la petición
 // no de obtener el token
-export async function getDocs(token: string): Promise<Documents[]> {
+
+export async function getDocs(token: string): Promise<IDocuments[]> {
   const response = await fetch(`${config.api}/docs/user`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -21,7 +22,7 @@ export async function getDocs(token: string): Promise<Documents[]> {
 export async function getDocByReponame(
   token: string,
   reponame: string
-): Promise<string> {
+): Promise<Response> {
   const response = await fetch(`${config.api}/docs/user/${reponame}`, {
     method: 'GET',
     headers: {
@@ -30,5 +31,5 @@ export async function getDocByReponame(
     },
   })
 
-  return await response.text()
+  return response
 }

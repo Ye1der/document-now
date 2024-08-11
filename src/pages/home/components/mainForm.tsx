@@ -1,21 +1,19 @@
-import { FileText, Loader2 } from 'lucide-react'
+import { FileText } from 'lucide-react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Button } from '@/components/ui/button'
 import { DescriptionForm } from './descriptionForm'
 import { SelectLangForm } from './selectLangForm'
 import { TittleForm } from './tittleForm'
-import { createDocumentInterceptor } from '../interceptors/create-document'
 import { useGlobalContext } from '@/context/globalContext'
-import { createRepoDoc } from '../services'
 import { useUser } from '@/hooks'
 import { toast } from 'sonner'
-import { Set, TempDoc } from '@/types'
+import { Set } from '@/types'
 import { useState } from 'react'
 import { generateDocSchema } from '../schemas'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { DocForm } from '@/models'
+import { documentsRepository, ICreateDoc, IDocForm } from '@/models/documents'
 import { useDocumentContext } from '@/context/documentContext'
+import { ButtonLoading } from '@/components/ButtonLoading'
 
 interface Props {
   setOpen: Set<boolean>
@@ -39,13 +37,18 @@ export function MainForm({ setOpen }: Props) {
 
   const onSubmit = async (data: z.infer<typeof generateDocSchema>) => {
     try {
-      const docInterceptor = createDocumentInterceptor(
-        data as DocForm,
-        currentRepo.name,
-        currentRepo.owner
-      )
       setLoading(true)
-      const response: TempDoc = await createRepoDoc(user.token, docInterceptor)
+
+      const docInterceptor: ICreateDoc = {
+        ...(data as IDocForm),
+        repoName: currentRepo.name,
+        owner: currentRepo.owner,
+      }
+
+      const response = await documentsRepository.createDoc(
+        user.token,
+        docInterceptor
+      )
 
       if (response.loading) {
         setTempDocs((prev) => [...prev, response])
@@ -77,17 +80,9 @@ export function MainForm({ setOpen }: Props) {
           <DescriptionForm control={form.control} />
           <SelectLangForm control={form.control} />
 
-          <Button disabled={loading} className="mt-5" type="submit">
-            {loading ? (
-              <>
-                Loading... <Loader2 className="w-4 h-4 ml-2 animate-spin" />
-              </>
-            ) : (
-              <>
-                Document <FileText className="w-4 h-4 ml-2" />
-              </>
-            )}
-          </Button>
+          <ButtonLoading loading={loading} className="mt-5" type="submit">
+            Document <FileText className="w-4 h-4 ml-2" />
+          </ButtonLoading>
         </form>
       </FormProvider>
     </section>

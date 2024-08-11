@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { addLocal, getLocal, USER_KEY } from '@/utils'
-import { UserLocal } from '@/models'
-import { getUser } from '@/services'
+import { IUserAdapted } from '@/models/user'
+import { userRepository } from '@/models/user'
 
-export function useUser(init: UserLocal = getLocal(USER_KEY)) {
+export function useUser(init: IUserAdapted = getLocal(USER_KEY)) {
   const [user, setUser] = useState(init)
 
   // Este login lo que hace es guardar la info del usuario necesaria en el localStorage
   async function login(token: string) {
-    const response = await getUser(token)
+    const user = await userRepository.getLoged(token)
 
-    setUser({ ...response, token })
+    setUser(user)
   }
 
   useEffect(() => {

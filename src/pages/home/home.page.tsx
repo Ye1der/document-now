@@ -3,7 +3,7 @@ import { MainCard } from './sections/mainCard'
 import { socket } from '@/services'
 import { TempDoc } from '@/types'
 import { useDocumentContext } from '@/context/documentContext'
-import { DocumentsAdapted } from '@/models'
+import { IDocumentsAdapted } from '@/models/documents'
 import { useLocation } from 'wouter'
 import { useUser } from '@/hooks'
 import { getLocal, TEMP_DOCS_KEY } from '@/utils'
@@ -49,7 +49,7 @@ export function HomePage() {
 
       setTempDocs(currentTemp)
 
-      const doc: DocumentsAdapted = {
+      const doc: IDocumentsAdapted = {
         id,
         repoName,
         title,

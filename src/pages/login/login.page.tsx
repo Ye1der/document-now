@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { config } from '@/config'
-import { LoaderCircle } from 'lucide-react'
 
 export function LoginPage() {
   const { user, login } = useUser()
@@ -43,14 +42,13 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
-      {token ? (
-        <span>
-          <LoaderCircle size={30} className="animate-spin" />
-        </span>
-      ) : (
-        <Button onClick={handleClick}>continue with github</Button>
-      )}
+    <div className="flex flex-col items-center justify-center w-full h-full gap-2">
+      <h1 className="text-2xl font-bold text-primary">One click</h1>
+      <h2 className="text-muted-foreground">Give us access to your projects</h2>
+
+      <Button onClick={handleClick} size="lg" variant="secondary">
+        continiue with github
+      </Button>
     </div>
   )
 }

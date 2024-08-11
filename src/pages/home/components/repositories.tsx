@@ -1,15 +1,15 @@
 import { SheetTrigger } from '@/components/ui/sheet'
 import { ListItem } from './listItem'
 import { Dispatch, useEffect, useRef, useState } from 'react'
-import { getRepos } from '../services'
+// import { getRepos } from '../services'
 import { useGlobalContext } from '@/context/globalContext'
 import { toast } from 'sonner'
 import { useUser } from '@/hooks'
-import { userReposAdapter } from '../adpters'
+// import { userReposAdapter } from '../adpters'
 import { CardList } from '../sections/cardList'
 import { Github } from '@/components/icons'
 import { useSearchContext } from '@/context/searchContext'
-import { RepositoryAdapted } from '../models'
+import { IRepositoryAdapted, reposRepository } from '@/models/repositories'
 import { GithubIcon } from 'lucide-react'
 
 export function Repositories() {
@@ -17,7 +17,7 @@ export function Repositories() {
   const [loading, setLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
 
-  const [repos, setRepos] = useState<RepositoryAdapted[]>([])
+  const [repos, setRepos] = useState<IRepositoryAdapted[]>([])
 
   const { user } = useUser()
 
@@ -31,7 +31,7 @@ export function Repositories() {
 
   const { setCurrentRepo } = useGlobalContext()
 
-  const originRepos = useRef<RepositoryAdapted[]>([])
+  const originRepos = useRef<IRepositoryAdapted[]>([])
 
   useEffect(() => {
     setAtributeCompare('name')
@@ -47,9 +47,10 @@ export function Repositories() {
     if (!user) return
 
     setLoading(true)
-    getRepos(user.token, currentPage, 30)
-      .then(({ repositories, lastPage }) => {
-        const repos = userReposAdapter(repositories)
+    reposRepository
+      .getRepos(user.token, currentPage, 30)
+      .then(({ repositories: repos, lastPage }) => {
+        // const repos = userReposAdapter(repositories)
 
         originRepos.current = [...originRepos.current, ...repos]
 

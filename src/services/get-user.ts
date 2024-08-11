@@ -1,7 +1,7 @@
 import { config } from '@/config'
-import { User } from '@/models'
+import { IUser } from '@/models/user'
 
-export async function getUser(token: string): Promise<User> {
+export async function getUser(token: string): Promise<IUser> {
   const response = await fetch(`${config.api}/user`, {
     headers: {
       Authorization: `Bearer ${token}`,

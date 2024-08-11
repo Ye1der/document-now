@@ -1,11 +1,11 @@
 import { Presentation } from './sections/presentation'
-import { Playground } from './sections/playground'
+// import { Playground } from './sections/playground'
 
 export function LandingPage() {
   return (
-    <section className="pb-20">
+    <section className="">
       <Presentation />
-      <Playground />
+      {/* <Playground /> */}
     </section>
   )
 }

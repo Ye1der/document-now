@@ -1,3 +1,6 @@
-export * from './get-docs'
+export * from './documents/create-doc'
+export * from './documents/delete-doc'
+export * from './documents/get-docs'
+export * from './get-repos'
 export * from './get-user'
 export * from './socket'

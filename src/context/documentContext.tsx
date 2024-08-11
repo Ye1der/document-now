@@ -1,13 +1,13 @@
 import { useTempDocs } from '@/hooks'
-import { DocumentsAdapted } from '@/models'
+import { IDocumentsAdapted } from '@/models/documents'
 import { Set, TempDoc } from '@/types'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface Context {
-  currentDocument: DocumentsAdapted
-  setCurrentDocument: Set<DocumentsAdapted>
-  documents: DocumentsAdapted[]
-  setDocuments: Set<DocumentsAdapted[]>
+  currentDocument: IDocumentsAdapted
+  setCurrentDocument: Set<IDocumentsAdapted>
+  documents: IDocumentsAdapted[]
+  setDocuments: Set<IDocumentsAdapted[]>
   tempDocs: TempDoc[]
   setTempDocs: Set<TempDoc[]>
 }
@@ -15,8 +15,10 @@ interface Context {
 const DocumentContext = createContext<Context>({} as Context)
 
 export function DocumentProvider({ children }: { children: ReactNode }) {
-  const [currentDocument, setCurrentDocument] = useState({} as DocumentsAdapted)
-  const [documents, setDocuments] = useState<DocumentsAdapted[]>([])
+  const [currentDocument, setCurrentDocument] = useState(
+    {} as IDocumentsAdapted
+  )
+  const [documents, setDocuments] = useState<IDocumentsAdapted[]>([])
   const { tempDocs, setTempDocs } = useTempDocs()
 
   return (

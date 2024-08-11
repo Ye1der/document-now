@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import { useParams } from 'wouter'
-import { getDocByReponame } from '@/services'
 import { useUser } from '@/hooks'
 import { toast } from 'sonner'
 import { useState } from 'react'
 import { DocumentsLayout } from './layouts/documents.layout'
 import { Main, Sidebar } from './components'
 import { marked } from 'marked'
+import { documentsRepository } from '@/models/documents'
 
 export function DocumentsPage() {
   const [content, setContent] = useState<string>('')
@@ -19,7 +19,8 @@ export function DocumentsPage() {
 
     if (!user) return
 
-    getDocByReponame(user.token, params.reponame)
+    documentsRepository
+      .getDocContentByReponame(user.token, params.reponame)
       .then((content) => {
         const parsedContent = marked.parse(content) as string
 
@@ -57,7 +58,7 @@ export function DocumentsPage() {
 
   return (
     <DocumentsLayout>
-      <Sidebar data={sidebarStructure} />
+      <Sidebar data={sidebarStructure} repoName={params.reponame ?? ''} />
       <Main content={content} />
     </DocumentsLayout>
   )

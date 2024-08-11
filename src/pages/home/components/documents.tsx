@@ -1,10 +1,8 @@
 import { CardList } from '../sections/cardList'
 import { ListItem } from './listItem'
-import { getDocs } from '@/services'
 import { Dispatch, useEffect, useRef, useState } from 'react'
 import { useUser } from '@/hooks'
-import { DocumentsAdapted } from '@/models'
-import { documentsAdapter } from '@/adapters'
+import { IDocumentsAdapted, documentsRepository } from '@/models/documents'
 import { FileText } from 'lucide-react'
 import { useSearchContext } from '@/context/searchContext'
 import { useDocumentContext } from '@/context/documentContext'
@@ -12,13 +10,13 @@ import { useLocation } from 'wouter'
 import { TempDoc } from './tempDoc'
 
 export function Documents() {
-  // const [documents, setDocuments] = useState<DocumentsAdapted[]>([])
+  // const [documents, setDocuments] = useState<IDocumentsAdapted[]>([])
   const [loading, setLoading] = useState(true)
   const [, setLocation] = useLocation()
 
   const { user } = useUser()
 
-  const originDocs = useRef<DocumentsAdapted[]>([])
+  const originDocs = useRef<IDocumentsAdapted[]>([])
   const {
     setArray,
     setPlaceholder,
@@ -40,11 +38,10 @@ export function Documents() {
 
   const fetchDocs = async (token: string) => {
     try {
-      await getDocs(token).then((docs) => {
-        const adaptedDocs = documentsAdapter(docs)
-        originDocs.current = adaptedDocs
+      await documentsRepository.getDocs(token).then((docs) => {
+        originDocs.current = docs
 
-        setDocuments(adaptedDocs)
+        setDocuments(docs)
         setArray(originDocs.current)
 
         setLoading(false)
@@ -71,7 +68,6 @@ export function Documents() {
   return (
     <CardList loading={loading}>
       {userTempDocs.map((doc, index) => (
-        // <ListItem key={index} name={doc.title} icon={<FileText size={20} />} />
         <TempDoc key={index} name={doc.title} />
       ))}
       {documents.length === 0 && !loading && tempDocs.length === 0 ? (
@@ -87,7 +83,7 @@ export function Documents() {
             icon={<FileText size={20} />}
             onClick={() => {
               setCurrentDocument(doc)
-              setLocation(`~/documents/${doc.repoName}`, {
+              setLocation(`~/documents/${doc.repoName}?id=${doc.id}`, {
                 replace: true,
               })
             }}

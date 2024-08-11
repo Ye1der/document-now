@@ -1,5 +1,5 @@
 import { config } from '@/config'
-import { FectchRepos } from '../models'
+import { IReposData } from '@/models/repositories'
 
 // la idea es que el servicio no tenga solo se encargue de hacer la petición
 // no de obtener el token
@@ -7,7 +7,7 @@ export async function getRepos(
   token: string,
   page: number = 1,
   perPage: number = 30
-): Promise<FectchRepos> {
+): Promise<IReposData> {
   const response = await fetch(
     `${config.api}/github/repos?page=${page}&per_page=${perPage}`,
     {

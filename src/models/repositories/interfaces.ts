@@ -1,16 +1,22 @@
-export interface FectchRepos {
-  repositories: Repository[]
+export interface IReposData {
+  repositories: IRepository[]
   nextPage: number
   lastPage: number | null
 }
 
-export interface Repository {
+export interface IReposAdapted {
+  repositories: IRepositoryAdapted[]
+  nextPage: number
+  lastPage: number | null
+}
+
+export interface IRepository {
   id: number
   node_id: string
   name: string
   full_name: string
   private: boolean
-  owner: Owner
+  owner: IOwner
   html_url: string
   description?: string
   fork: boolean
@@ -84,10 +90,10 @@ export interface Repository {
   open_issues: number
   watchers: number
   default_branch: string
-  permissions: Permissions
+  permissions: IPermissions
 }
 
-export interface Owner {
+export interface IOwner {
   login: string
   id: number
   node_id: string
@@ -108,7 +114,7 @@ export interface Owner {
   site_admin: boolean
 }
 
-export interface Permissions {
+export interface IPermissions {
   admin: boolean
   maintain: boolean
   push: boolean
@@ -116,12 +122,12 @@ export interface Permissions {
   pull: boolean
 }
 
-export interface RepositoryAdapted {
-  id: Repository['id']
-  name: Repository['name']
-  description: Repository['description']
-  branch: Repository['default_branch']
-  owner: Repository['owner']['login']
+export interface IRepositoryAdapted {
+  id: IRepository['id']
+  name: IRepository['name']
+  description: IRepository['description']
+  branch: IRepository['default_branch']
+  owner: IRepository['owner']['login']
 }
 
 export interface DocsReposAdapted {
@@ -129,10 +135,10 @@ export interface DocsReposAdapted {
   title: string
   content: string
   repository: {
-    id: Repository['id']
-    name: Repository['name']
-    description: Repository['description']
-    branch: Repository['default_branch']
+    id: IRepository['id']
+    name: IRepository['name']
+    description: IRepository['description']
+    branch: IRepository['default_branch']
   }
 }
 
@@ -142,5 +148,9 @@ export interface DocsRepos {
   content: string
   repoName: string
   userId: number
-  repoInfo: Repository
+  repoInfo: IRepository
+}
+
+export interface IReposRepository {
+  getRepos(token: string, page: number, perPage: number): Promise<IReposAdapted>
 }

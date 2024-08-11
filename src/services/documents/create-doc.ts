@@ -1,7 +1,10 @@
-import { DocumentInterceptor } from '@/models'
+import { ICreateDoc, ITempDoc } from '@/models/documents'
 import { config } from '@/config'
 
-export async function createRepoDoc(token: string, data: DocumentInterceptor) {
+export async function createDoc(
+  token: string,
+  data: ICreateDoc
+): Promise<ITempDoc> {
   const { api } = config
   const response = await fetch(`${api}/docs/generate`, {
     method: 'POST',
@@ -11,8 +14,6 @@ export async function createRepoDoc(token: string, data: DocumentInterceptor) {
     },
     body: JSON.stringify(data),
   })
-
-  // console.log(response)
 
   const doc = await response.json()
 
