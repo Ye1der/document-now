@@ -1,14 +1,12 @@
 import { Route, Switch } from 'wouter'
-import { HomePage } from './pages/home/home.page'
-import { LoginPage } from './pages/login/login.page'
+import { HomePage } from './pages/home.page'
 import { Toaster } from './components/ui/sonner'
 import { useEffect, useState } from 'react'
-import { LandingPage } from './pages/landing/landing.page'
+import { LandingPage } from './pages/landing.page'
 import { DocumentsPage } from './pages/documents/documents.page'
-import { IndexLayout } from './layouts/index.layout'
 import { useTheme } from './hooks'
 import { Theme } from './types.d'
-import { DocumentProvider } from './context/documentContext'
+import { ProtectedRoute } from './features/login/protectedRoute'
 
 function App() {
   const { theme, setTheme } = useTheme()
@@ -25,14 +23,11 @@ function App() {
     return (
       <Switch>
         <Route path="/" component={LandingPage} />
-        <IndexLayout>
-          <Route path="/documents/:reponame" component={DocumentsPage} />
-          <DocumentProvider>
-            <Route path="/home" component={HomePage} nest />
-          </DocumentProvider>
-          <Route path="/login" component={LoginPage} />
-          <Toaster richColors />
-        </IndexLayout>
+        <Route path="/documents/:reponame" component={DocumentsPage} />
+        <ProtectedRoute>
+          <Route path="/home" component={HomePage} nest />
+        </ProtectedRoute>
+        <Toaster richColors />
       </Switch>
     )
 }

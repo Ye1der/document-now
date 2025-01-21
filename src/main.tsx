@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import '@fontsource/poppins'
+import '@fontsource/bungee'
+import '@fontsource/satisfy'
 import './index.css'
 import { GlobalContext } from './context/globalContext.tsx'
 import { SearchProvider } from './context/searchContext.tsx'
