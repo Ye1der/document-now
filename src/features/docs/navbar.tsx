@@ -75,7 +75,10 @@ export function Navbar() {
         <div className="flex">
           <div className="bg-customBlueGray py-2 pr-3 pl-1 w-full rounded-l-xl flex items-center">
             <GitCommitIcon />
-            <p className="font-semibold text-sm"> {doc.commit.slice(0, 15)} </p>
+            <p className="font-semibold text-sm">
+              {' '}
+              {doc?.commit?.slice(0, 15)}{' '}
+            </p>
           </div>
           <button
             onClick={copyCommit}
