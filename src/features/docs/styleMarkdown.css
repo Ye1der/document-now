@@ -1,0 +1,65 @@
+.markdown h1 {
+  font-size: 30px;
+  font-weight: 900;
+  font-family: 'Bungee';
+  color: #efdcab;
+  padding-bottom: 10px;
+  padding-top: 30px;
+}
+
+.markdown h2 {
+  font-size: 22px;
+  font-weight: 900;
+  padding-bottom: 10px;
+  padding-top: 25px;
+  color: #98d2c0;
+}
+
+.markdown h3 {
+  font-size: 18px;
+  font-weight: 900;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.markdown h4 {
+  font-size: 15px;
+  font-weight: 700;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.markdown p {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+
+  strong {
+    color: white;
+    opacity: 1;
+  }
+}
+
+.markdown li {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 10px;
+
+  strong {
+    opacity: 1;
+    color: white;
+  }
+}
+
+pre {
+  code {
+    margin-block: 20px;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 14px;
+    background: #202020;
+  }
+}
+
+.hljs {
+  background-color: #282a2c;
+}

@@ -4,14 +4,6 @@ import '@fontsource/poppins'
 import '@fontsource/bungee'
 import '@fontsource/satisfy'
 import './index.css'
-import { GlobalContext } from './context/globalContext.tsx'
-import { SearchProvider } from './context/searchContext.tsx'
 import './typesExtensions.ts'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <GlobalContext>
-    <SearchProvider>
-      <App />
-    </SearchProvider>
-  </GlobalContext>
-)
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />)

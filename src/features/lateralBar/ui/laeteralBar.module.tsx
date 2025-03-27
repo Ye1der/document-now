@@ -1,11 +1,11 @@
 import { Logo } from '@/components/icons'
 import { GitCard } from './gitCard'
-import { CloudDownloadIcon, Login02Icon, Search01Icon } from 'hugeicons-react'
+import { Login02Icon, Search01Icon } from 'hugeicons-react'
 import { useEffect, useState } from 'react'
-import { getRepos } from './getRepos'
+import { getRepos } from '../services/getRepos'
 import { getLocal } from '@/utils'
-import { IRepo } from './interfaces'
-import { LoaderCircle } from 'lucide-react'
+import { IRepo } from '../services/interfaces'
+import { CustomLoading } from '@/components/customLoading'
 
 export function LateralBar() {
   const [repos, setRepos] = useState<IRepo[]>([])
@@ -29,7 +29,7 @@ export function LateralBar() {
   }, [currentPage])
 
   return (
-    <section className="w-[350px] flex flex-col justify-between h-screen p-4 bg-customBlueBlack">
+    <section className="z-50 w-[350px] flex flex-col justify-between h-screen p-4 bg-customBlueBlack">
       <div className="flex items-center gap-2 mt-3">
         <Logo size={60} className="-rotate-[20deg]" />
         <h2 className="text-lg font-bungee md:text-2xl"> Doc! Now </h2>
@@ -61,13 +61,14 @@ export function LateralBar() {
             onClick={() => {
               setCurrentPage(currentPage + 1)
             }}
-            className="mt-3 p-3 flex items-center justify-center gap-3 bg-customGray rounded-xl w-full"
+            className="mt-4 flex items-center justify-center gap-1 w-full"
           >
-            <h1 className="font-semibold text-white"> More repositories </h1>
             {loading ? (
-              <LoaderCircle className="animate-spin" />
+              <CustomLoading size={20} />
             ) : (
-              <CloudDownloadIcon />
+              <h1 className="font-semibold text-white border-b border-transparent hover:border-white ">
+                more repositories
+              </h1>
             )}
           </button>
         )}

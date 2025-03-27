@@ -34,9 +34,9 @@
 
     /* desing colors of figma */
     --custom-blue-ultra-black: #111315;
-    --custom-blue-black: #1D1F21;
-    --custom-blue-gray: #282A2C;
-    --custom-gray: #3D3F41;
+    --custom-blue-black: #1d1f21;
+    --custom-blue-gray: #282a2c;
+    --custom-gray: #3d3f41;
     --custom-red-black: #471919;
   }
 }
@@ -79,17 +79,18 @@
   --chart-3: 30 80% 55%;
   --chart-4: 280 65% 60%;
   --chart-5: 340 75% 55%;
-  
+
   /* desing colors of figma */
   --custom-blue-ultra-black: #111315;
-  --custom-blue-black: #1D1F21;
-  --custom-blue-gray: #282A2C;
-  --custom-gray: #3D3F41;
+  --custom-blue-black: #1d1f21;
+  --custom-blue-gray: #282a2c;
+  --custom-gray: #3d3f41;
   --custom-red-black: #471919;
 }
 
 ::-webkit-scrollbar {
-  width: 7px;
+  width: 8px;
+  height: 8px;
   position: absolute;
 }
 
@@ -104,8 +105,18 @@
 
 .dark {
   ::-webkit-scrollbar-thumb {
-    background: #262626;
+    background: transparent;
     border-radius: 100px;
+  }
+}
+
+* {
+  /*  */
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 100px;
+    }
   }
 }
 

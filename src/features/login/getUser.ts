@@ -1,7 +1,6 @@
 import { UnauthorizedError } from '@/errorHandle/errors'
-import { IUser } from '@/models/user'
 
-export async function getUser(token: string): Promise<IUser> {
+export async function getUser(token: string) {
   const response = await fetch(`http://localhost:3000/api/v1/github/user`, {
     headers: {
       Authorization: `Bearer ${token}`,
