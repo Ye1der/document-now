@@ -10,10 +10,12 @@ import {
 import { useAtom } from 'jotai'
 import { useRef } from 'react'
 import gsap from 'gsap'
+import { toast } from 'sonner'
 
 export function Navbar() {
   const [doc, setDoc] = useAtom(atomCurrentDoc)
   const ref = useRef(null)
+  const commitRef = useRef(null)
 
   useGSAP(() => {
     if (doc?.close) {
@@ -34,8 +36,13 @@ export function Navbar() {
     })
   }, [doc])
 
-  function close() {
+  const close = () => {
     setDoc({ close: true })
+  }
+
+  const copyCommit = () => {
+    navigator.clipboard.writeText(doc.commit)
+    toast.success('Commit copied')
   }
 
   return (
@@ -68,9 +75,12 @@ export function Navbar() {
         <div className="flex">
           <div className="bg-customBlueGray py-2 pr-3 pl-1 w-full rounded-l-xl flex items-center">
             <GitCommitIcon />
-            <p className="font-semibold text-sm"> 604ca3d250100a </p>
+            <p className="font-semibold text-sm"> {doc.commit.slice(0, 15)} </p>
           </div>
-          <button className="bg-customBlueGray p-2 rounded-r-xl border-l-2 border-customBlueUltraBlack">
+          <button
+            onClick={copyCommit}
+            className="bg-customBlueGray p-2 rounded-r-xl border-l-2 border-customBlueUltraBlack hover:text-orange-200"
+          >
             <Copy01Icon size={18} />
           </button>
         </div>
