@@ -8,25 +8,17 @@ import {
   GitCommitIcon,
 } from 'hugeicons-react'
 import { useAtom } from 'jotai'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { toast } from 'sonner'
+import { emitter } from '@/emitters/emitter'
 
 export function Navbar() {
   const [doc, setDoc] = useAtom(atomCurrentDoc)
   const ref = useRef(null)
-  const commitRef = useRef(null)
 
   useGSAP(() => {
-    if (doc?.close) {
-      gsap.to(ref.current, {
-        opacity: 0,
-        x: -300,
-        duration: 1,
-      })
-    }
-
-    if (!doc?.repoName) return
+    if (!doc) return
 
     gsap.to(ref.current, {
       x: 0,
@@ -36,12 +28,22 @@ export function Navbar() {
     })
   }, [doc])
 
+  useEffect(() => {})
+
   const close = () => {
-    setDoc({ close: true })
+    emitter.emit('showDoc', true)
+    gsap.to(ref.current, {
+      opacity: 0,
+      x: -300,
+      duration: 1,
+      onComplete: () => {
+        setDoc(null)
+      },
+    })
   }
 
   const copyCommit = () => {
-    navigator.clipboard.writeText(doc.commit)
+    navigator.clipboard.writeText(doc?.commit ?? '')
     toast.success('Commit copied')
   }
 
@@ -75,10 +77,7 @@ export function Navbar() {
         <div className="flex">
           <div className="bg-customBlueGray py-2 pr-3 pl-1 w-full rounded-l-xl flex items-center">
             <GitCommitIcon />
-            <p className="font-semibold text-sm">
-              {' '}
-              {doc?.commit?.slice(0, 15)}{' '}
-            </p>
+            <p className="font-semibold text-sm">{doc?.commit?.slice(0, 15)}</p>
           </div>
           <button
             onClick={copyCommit}
@@ -90,8 +89,8 @@ export function Navbar() {
       </section>
 
       <section className="flex flex-col gap-3 overflow-auto h-full pt-4 pb-10 border-t border-white/20 mt-3">
-        {doc?.ids?.length > 0 &&
-          doc.ids.map((name) => {
+        {(doc?.ids?.length ?? 0) > 0 &&
+          doc?.ids.map((name) => {
             return (
               <a
                 href={'#' + name}

@@ -10,8 +10,9 @@ import { getDocumentation } from '../services/getDocumentation'
 import { toast } from 'sonner'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { loadingEmitter } from '@/emitters/loadingEmitter'
 import { existDoc } from '../services/existDocumentation'
+import { CustomLoading } from '@/components/customLoading'
+import { emitter } from '@/emitters/emitter'
 
 gsap.registerPlugin(useGSAP)
 
@@ -19,6 +20,7 @@ export function GitCard({ repo }: { repo: IRepo }) {
   const [extend, setExtend] = useState(false)
   const [, setCurrentDoc] = useAtom(atomCurrentDoc)
   const ref = useRef(null)
+  const [loading, setLoading] = useState(false)
 
   async function showDoc() {
     // Comprobamos si existe una documentacion de ese repo
@@ -29,10 +31,15 @@ export function GitCard({ repo }: { repo: IRepo }) {
       )
 
     // Pedimos la documentacion del repo
-    loadingEmitter.emit('loadingDoc', true)
+    setLoading(true)
     const doc = await getDocumentation(repo)
-    setCurrentDoc(doc)
-    loadingEmitter.emit('loadingDoc', false)
+    emitter.emit('showKey', false)
+
+    emitter.on('showDoc', (value) => {
+      if (!value) return
+      setCurrentDoc(doc)
+      setLoading(false)
+    })
   }
 
   useGSAP(() => {
@@ -105,9 +112,9 @@ export function GitCard({ repo }: { repo: IRepo }) {
       <div className="mt-4 flex items-center justify-between">
         <button
           onClick={showDoc}
-          className="font-bold bg-customGray py-2 px-3 rounded-xl"
+          className="font-bold bg-customGray py-2 px-3 rounded-xl transition-all"
         >
-          View doc
+          {loading ? <CustomLoading /> : 'View doc'}
         </button>
 
         <button

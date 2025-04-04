@@ -1,8 +1,123 @@
 import { cn } from '@/lib/utils'
+import * as React from 'react'
+import type { SVGProps } from 'react'
 
 interface Props {
   className?: string
   size?: number
+}
+
+export const MistralAI = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid"
+    viewBox="0 0 256 233"
+    width="1em"
+    height="1em"
+    {...props}
+  >
+    <path d="M186.18182 0h46.54545v46.54545h-46.54545z" />
+    <path fill="#F7D046" d="M209.45454 0h46.54545v46.54545h-46.54545z" />
+    <path d="M0 0h46.54545v46.54545H0zM0 46.54545h46.54545V93.0909H0zM0 93.09091h46.54545v46.54545H0zM0 139.63636h46.54545v46.54545H0zM0 186.18182h46.54545v46.54545H0z" />
+    <path fill="#F7D046" d="M23.27273 0h46.54545v46.54545H23.27273z" />
+    <path
+      fill="#F2A73B"
+      d="M209.45454 46.54545h46.54545V93.0909h-46.54545zM23.27273 46.54545h46.54545V93.0909H23.27273z"
+    />
+    <path d="M139.63636 46.54545h46.54545V93.0909h-46.54545z" />
+    <path
+      fill="#F2A73B"
+      d="M162.90909 46.54545h46.54545V93.0909h-46.54545zM69.81818 46.54545h46.54545V93.0909H69.81818z"
+    />
+    <path
+      fill="#EE792F"
+      d="M116.36364 93.09091h46.54545v46.54545h-46.54545zM162.90909 93.09091h46.54545v46.54545h-46.54545zM69.81818 93.09091h46.54545v46.54545H69.81818z"
+    />
+    <path d="M93.09091 139.63636h46.54545v46.54545H93.09091z" />
+    <path
+      fill="#EB5829"
+      d="M116.36364 139.63636h46.54545v46.54545h-46.54545z"
+    />
+    <path
+      fill="#EE792F"
+      d="M209.45454 93.09091h46.54545v46.54545h-46.54545zM23.27273 93.09091h46.54545v46.54545H23.27273z"
+    />
+    <path d="M186.18182 139.63636h46.54545v46.54545h-46.54545z" />
+    <path
+      fill="#EB5829"
+      d="M209.45454 139.63636h46.54545v46.54545h-46.54545z"
+    />
+    <path d="M186.18182 186.18182h46.54545v46.54545h-46.54545z" />
+    <path fill="#EB5829" d="M23.27273 139.63636h46.54545v46.54545H23.27273z" />
+    <path
+      fill="#EA3326"
+      d="M209.45454 186.18182h46.54545v46.54545h-46.54545zM23.27273 186.18182h46.54545v46.54545H23.27273z"
+    />
+  </svg>
+)
+
+export const CustomKey = ({ className, size = 24 }: Props) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M2.586 17.414C2.2109 17.789 2.00011 18.2976 2 18.828V21C2 21.2652 2.10536 21.5195 2.29289 21.7071C2.48043 21.8946 2.73478 22 3 22H6C6.26522 22 6.51957 21.8946 6.70711 21.7071C6.89464 21.5195 7 21.2652 7 21V20C7 19.7348 7.10536 19.4804 7.29289 19.2929C7.48043 19.1053 7.73478 19 8 19H9C9.26522 19 9.51957 18.8946 9.70711 18.7071C9.89464 18.5195 10 18.2652 10 18V17C10 16.7348 10.1054 16.4804 10.2929 16.2929C10.4804 16.1053 10.7348 16 11 16H11.172C11.7024 15.9999 12.211 15.7891 12.586 15.414L13.4 14.6C14.7898 15.0841 16.3028 15.0823 17.6915 14.5947C19.0801 14.1072 20.2622 13.1628 21.0444 11.9161C21.8265 10.6694 22.1624 9.19415 21.9971 7.73172C21.8318 6.26928 21.1751 4.90623 20.1344 3.86555C19.0937 2.82486 17.7307 2.16816 16.2683 2.00287C14.8058 1.83757 13.3306 2.17347 12.0839 2.95562C10.8372 3.73776 9.89279 4.91985 9.40525 6.3085C8.91771 7.69714 8.91585 9.21014 9.4 10.6L2.586 17.414Z"
+        stroke="url(#paint0_linear_318_205)"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M16.5 8C16.7761 8 17 7.77614 17 7.5C17 7.22386 16.7761 7 16.5 7C16.2239 7 16 7.22386 16 7.5C16 7.77614 16.2239 8 16.5 8Z"
+        fill="url(#paint1_linear_318_205)"
+        stroke="url(#paint2_linear_318_205)"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <defs>
+        <linearGradient
+          id="paint0_linear_318_205"
+          x1="12.0191"
+          y1="1.96173"
+          x2="12.0191"
+          y2="22"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#E3499C" />
+          <stop offset="1" stop-color="#6C6AEE" />
+        </linearGradient>
+        <linearGradient
+          id="paint1_linear_318_205"
+          x1="16.5"
+          y1="7"
+          x2="16.5"
+          y2="8"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#E3499C" />
+          <stop offset="1" stop-color="#6C6AEE" />
+        </linearGradient>
+        <linearGradient
+          id="paint2_linear_318_205"
+          x1="16.5"
+          y1="7"
+          x2="16.5"
+          y2="8"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stop-color="#E3499C" />
+          <stop offset="1" stop-color="#6C6AEE" />
+        </linearGradient>
+      </defs>
+    </svg>
+  )
 }
 
 export const Github = ({ className, size = 250 }: Props) => {
@@ -20,17 +135,24 @@ export const Github = ({ className, size = 250 }: Props) => {
   )
 }
 
-export const Logo = ({className, size = 497}: Props) => {
+export const Logo = ({ className, size = 497 }: Props) => {
   return (
-    <svg className={className} width={size} height={size*(282/497)} viewBox="0 0 497 282" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <svg className='fill-foreground'>
-        <rect y="126" width="156" height="156"/>
-        <rect x="252" y="126" width="156" height="156"/>
-        <rect x="379" y="38" width="118" height="118"/>
-        <rect x="126" width="156" height="156"/>
+    <svg
+      className={className}
+      width={size}
+      height={size * (282 / 497)}
+      viewBox="0 0 497 282"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <svg className="fill-foreground">
+        <rect y="126" width="156" height="156" />
+        <rect x="252" y="126" width="156" height="156" />
+        <rect x="379" y="38" width="118" height="118" />
+        <rect x="126" width="156" height="156" />
       </svg>
-      <svg className='fill-background'>
-        <circle cx="437.5" cy="97.5" r="18.5"/>
+      <svg className="fill-background">
+        <circle cx="437.5" cy="97.5" r="18.5" />
       </svg>
     </svg>
   )

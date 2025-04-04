@@ -1,0 +1,45 @@
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+#borderBox {
+  /* relative bg-customBlueBlack flex items-center gap-3 rounded-xl */
+  position: relative;
+  background: var(--custom-blue-black);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 12px;
+  padding-inline: 10px;
+
+  &::after,
+  &::before {
+    content: '';
+    z-index: -1;
+    width: calc(100% + 3px);
+    height: calc(100% + 3px);
+    background-image: conic-gradient(
+      from var(--angle),
+      transparent 90%,
+      #e3499c,
+      #6d6aee
+    );
+    position: absolute;
+    border-radius: 12px;
+    top: 50%;
+    left: 50%;
+    translate: calc(-50% - 0.3px) -50%;
+    animation: 5s spin linear infinite;
+  }
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
+  }
+}

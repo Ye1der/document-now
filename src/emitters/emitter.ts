@@ -1,4 +1,4 @@
-class LoadingEmitter extends EventTarget {
+class Emitter extends EventTarget {
   emit(event: string, detail?: unknown) {
     this.dispatchEvent(new CustomEvent(event, { detail }))
   }
@@ -12,4 +12,5 @@ class LoadingEmitter extends EventTarget {
   }
 }
 
-export const loadingEmitter = new LoadingEmitter()
+export const loadingEmitter = new Emitter()
+export const emitter = new Emitter()

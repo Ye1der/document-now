@@ -1,5 +1,5 @@
 import { CustomLoading } from '@/components/customLoading'
-import { loadingEmitter } from '@/emitters/loadingEmitter'
+import { loadingEmitter } from '@/emitters/emitter'
 import { FC, useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 
